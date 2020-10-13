@@ -1,6 +1,7 @@
 import 'phaser';
 import { Boot } from './scenes/Boot';
 import { Preload } from './scenes/Preload';
+import { MainMenu } from './scenes/MainMenu';
 
 class GameApp extends Phaser.Game {
     public static gameConfig: Phaser.Types.Core.GameConfig = null;
@@ -15,7 +16,7 @@ class GameApp extends Phaser.Game {
                 backgroundColor: '#385e78',
                 width: 1024,
                 height: 512,
-                scene: [Boot, Preload]
+                scene: [Boot, Preload, MainMenu]
             };
         }
 
