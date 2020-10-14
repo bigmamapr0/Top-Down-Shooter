@@ -1,7 +1,7 @@
 class MainMenu extends Phaser.Scene {
 
     constructor() {
-        super("mainmenu");
+        super("mainMenu");
     }
 }
 
