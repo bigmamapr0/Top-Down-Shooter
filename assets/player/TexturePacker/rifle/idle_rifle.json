@@ -1,0 +1,172 @@
+{"frames": [
+
+{
+	"filename": "survivor-idle_rifle_0",
+	"frame": {"x":0,"y":0,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_1",
+	"frame": {"x":313,"y":0,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_2",
+	"frame": {"x":626,"y":0,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_3",
+	"frame": {"x":0,"y":207,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_4",
+	"frame": {"x":313,"y":207,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_5",
+	"frame": {"x":626,"y":207,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_6",
+	"frame": {"x":0,"y":414,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_7",
+	"frame": {"x":313,"y":414,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_8",
+	"frame": {"x":626,"y":414,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_9",
+	"frame": {"x":0,"y":621,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_10",
+	"frame": {"x":313,"y":621,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_11",
+	"frame": {"x":626,"y":621,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_12",
+	"frame": {"x":0,"y":828,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_13",
+	"frame": {"x":313,"y":828,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_14",
+	"frame": {"x":626,"y":828,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_15",
+	"frame": {"x":0,"y":1035,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_16",
+	"frame": {"x":313,"y":1035,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_17",
+	"frame": {"x":626,"y":1035,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_18",
+	"frame": {"x":0,"y":1242,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+},
+{
+	"filename": "survivor-idle_rifle_19",
+	"frame": {"x":313,"y":1242,"w":313,"h":207},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":207},
+	"sourceSize": {"w":313,"h":207}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "idle_rifle.png",
+	"format": "RGBA8888",
+	"size": {"w":939,"h":1449},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:885f111c3371e53ff74ec6fdf41fee07:888db2ce0ee5b45f29aedba0131c51f0:0a0bc5dc01dc967557874bba1a9addf4$"
+}
+}
