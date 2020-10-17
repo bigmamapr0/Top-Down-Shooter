@@ -6,7 +6,6 @@ class Gameplay extends Phaser.Scene {
 
     create() {
         console.log(123);
-        console.log("dadssad");
     }
 }
 
