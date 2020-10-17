@@ -12,7 +12,7 @@ class Gameplay extends Phaser.Scene {
         let player = new Player(this, 200, 200, "playerIdleRifle", "survivor-idle_rifle_4");
         this.add.existing(player);
         
-        player.anims.play("walkRifle");
+        player.anims.play("idleRifle");
         
     }
 }
