@@ -3,7 +3,10 @@ import { CharacterInput } from "../util/CharacterInput";
 class Player extends Phaser.Physics.Arcade.Sprite {
     
     player: Player;
-    movementSpeed: number = 200;
+    
+    baseSpeed: number = 250;
+    movementSpeed: number = 250;
+    sprintSpeedAdded: number = 450;
     
     keys: CharacterInput;
 
@@ -33,7 +36,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         });
         
         this.keys = new CharacterInput(this.scene);
-        
+
         this.play("idleRifle");
     }
 
@@ -54,6 +57,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityX(-this.movementSpeed);
         } else if (this.keys.d.isDown) {
             this.setVelocityX(this.movementSpeed);
+        }
+
+        if (this.keys.shift.isDown) {
+            this.movementSpeed = this.sprintSpeedAdded;
+        } else if (this.keys.shift.isUp) {
+            this.movementSpeed = this.baseSpeed;
         }
     }
 }

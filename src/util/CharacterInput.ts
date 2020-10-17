@@ -6,6 +6,7 @@ class CharacterInput {
     public d?: Phaser.Input.Keyboard.Key;
 
     public space?: Phaser.Input.Keyboard.Key;
+    public shift?: Phaser.Input.Keyboard.Key;
 
     constructor(scene: Phaser.Scene) {
         this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -14,6 +15,7 @@ class CharacterInput {
         this.d = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         this.space = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.shift = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT);
     }
 }
 
