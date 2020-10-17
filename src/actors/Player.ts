@@ -1,7 +1,10 @@
 import { CharacterInput } from "../util/CharacterInput";
 
-class Player extends Phaser.GameObjects.Sprite {
-
+class Player extends Phaser.Physics.Arcade.Sprite {
+    
+    player: Player;
+    movementSpeed: number = 200;
+    
     keys: CharacterInput;
 
     constructor(scene: Phaser.Scene, x, y, texture, frame) {
@@ -28,16 +31,30 @@ class Player extends Phaser.GameObjects.Sprite {
             }),
             repeat: -1
         });
-
+        
+        this.keys = new CharacterInput(this.scene);
+        
         this.play("idleRifle");
     }
 
-    create() {
-        
-        if (this.keys.d.isDown) {
-            this.play("walkRifle")
+    public update(): void {
+        this.playerMovement();
+    }
+
+    public playerMovement(): void {
+        this.setVelocity(0, 0);
+
+        if (this.keys.w.isDown) {
+            this.setVelocityY(-this.movementSpeed);
+        } else if (this.keys.s.isDown) {
+            this.setVelocityY(this.movementSpeed);
         }
 
+        if (this.keys.a.isDown) {
+            this.setVelocityX(-this.movementSpeed);
+        } else if (this.keys.d.isDown) {
+            this.setVelocityX(this.movementSpeed);
+        }
     }
 }
 
