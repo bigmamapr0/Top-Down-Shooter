@@ -1,6 +1,7 @@
 import 'phaser';
-import { Boot } from './scenes/Boot';
-import { Preload } from './scenes/Preload';
+import { Boot } from './scenes/LoadingScenes/Boot';
+import { Preload } from './scenes/LoadingScenes/Preload';
+import { Gameplay } from './scenes/Gameplay/Gameplay';
 
 class GameApp extends Phaser.Game {
     public static gameConfig: Phaser.Types.Core.GameConfig = null;
@@ -13,9 +14,15 @@ class GameApp extends Phaser.Game {
                 type: Phaser.AUTO,
                 parent: "content",
                 backgroundColor: '#385e78',
-                width: 1024,
-                height: 512,
-                scene: [Boot, Preload]
+                width: window.innerWidth,
+                height: window.innerHeight,
+                physics: {
+                    default: "arcade",
+                    arcade: {
+                        debug: true
+                    }
+                },
+                scene: [Boot, Preload, Gameplay]
             };
         }
 
