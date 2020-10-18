@@ -13,6 +13,7 @@ class Gameplay extends Phaser.Scene {
 
     create() {
         this.player = new Player(this, 200, 200, "playerIdleRifle", "survivor-idle_rifle_4");
+        this.add.existing(this.player);
         this.physics.add.existing(this.player);
 
         this.player.setCollideWorldBounds(true);
