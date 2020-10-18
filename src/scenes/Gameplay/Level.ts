@@ -14,11 +14,11 @@ class Level extends Phaser.Scene {
     create() {
         this.keys = new CharacterInput(this);
         
-        this.soldier = new Soldier(this, 100, 100);
-        this.add.existing(this.soldier);
+        // this.soldier = new Soldier(this, 100, 100);
+        // this.add.existing(this.soldier);
 
-                
         this.helicopter = new Helicopter(this, 300, 100);
+        this.helicopter.anims.play("helicopterRotor");
         this.add.existing(this.helicopter);
 
         this.time.addEvent({
@@ -30,8 +30,8 @@ class Level extends Phaser.Scene {
     }
 
     private soldier_die() {
-        this.soldier.anims.play("soldierDeath");
-    }    
+        //this.soldier.anims.play("soldierDeath");
+    }
 }
 
 export { Level }

@@ -7,14 +7,17 @@ class Helicopter extends Phaser.Physics.Arcade.Sprite {
         this.hitPoints = hp;
 
         this.scene.physics.add.existing(this);
-        
 
-/*         this.scene.anims.create({
-            key: "helicopterMove",
-            frames: this.scene.anims.generateFrameNames("helicopterMove", { prefix: "helicopter1", start: 1, end: 5 }),
-            frameRate: 10,
+        this.scene.anims.create({
+            key: "helicopterRotor",
+            frames: this.scene.anims.generateFrameNames("enemies", { prefix: "helicopterMove", start: 1, end: 3 }),
+            frameRate: 15,
+            repeat: 10
         });
-        this.anims.play("helicopterMove"); */
+
+        this.on('animationcomplete', (anim: Phaser.Animations.Animation, frame: Phaser.Animations.AnimationFrame) => {
+            this.setFrame("helicopterComplete");
+        });
     }
 
     public get isAlive(): boolean {
@@ -29,5 +32,7 @@ class Helicopter extends Phaser.Physics.Arcade.Sprite {
     //     super.destroy();
     // }
 }
+
+
 
 export { Helicopter }
