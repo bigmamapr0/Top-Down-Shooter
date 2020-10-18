@@ -14,7 +14,7 @@ class MainMenu extends Phaser.Scene {
 
         this.level = new Phaser.GameObjects.Text(this, this.cameras.main.width / 2, (this.cameras.main.height / 2) + this.gameName.height, "Level", null).setInteractive().setOrigin(0.5);
         this.level.on("pointerup", () => {
-            this.scene.start("level");
+            this.scene.start("gameplay");
         });
         this.add.existing(this.level);
     }
