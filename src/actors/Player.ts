@@ -4,13 +4,20 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     
     player: Player;
     
+    keys: CharacterInput;
+    
+    angle: number;
+    
     baseSpeed: number = 250;
     movementSpeed: number = 250;
     sprintSpeedAdded: number = 450;
-    
-    keys: CharacterInput;
 
-    angle: any;
+    hp: number = 100;
+    hpText: Phaser.GameObjects.Text;
+    money: number = 280;
+    moneyText: Phaser.GameObjects.Text;
+    attributesRectangleHP: Phaser.GameObjects.Rectangle;
+    attributesRectangleMoney: Phaser.GameObjects.Rectangle;
 
     constructor(scene: Phaser.Scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
@@ -44,14 +51,52 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.keys = new CharacterInput(this.scene);
 
         this.play("idleRifle");
+        this.playerAttributesSystem();
     }
 
     public update(): void {
         this.playerMovement();
         this.playerFacingMouse();
+        this.updateHealthSystem();
     }
 
-    public playerFacingMouse(): void {
+    private playerAttributesSystem(): void {
+        this.hpText = this.scene.add.text(20, 20, `HP: ${this.hp}`, { fontSize: "20px", padding: "5px" }).setDepth(10);
+        this.moneyText = this.scene.add.text(145, 20, `MONEY: $${this.money}`, { fontSize: "20px", padding: "5px" }).setDepth(10);
+        
+        this.hpText.setPadding(10, 10, 10, 10);
+        this.moneyText.setPadding(10, 10, 10, 10);
+
+        this.attributesRectangleHP = this.scene.add.rectangle(this.hpText.x, this.hpText.y, this.hpText.width + 5, this.hpText.height, 0xff0000, 0.2).setOrigin(0, 0).setDepth(9);
+        this.attributesRectangleMoney = this.scene.add.rectangle(this.moneyText.x, this.moneyText.y, this.moneyText.width + 5, this.moneyText.height, 0xb4cfb4, 0.2).setOrigin(0, 0).setDepth(9);
+        
+        this.attributesRectangleHP.setStrokeStyle(2, 0x15ff00);
+        this.attributesRectangleMoney.setStrokeStyle(2, 0xffffff);
+    }
+
+    private updateHealthSystem() {
+        if (this.hp > 80) {
+            this.attributesRectangleHP.setStrokeStyle(2, 0x15ff00);
+        }
+
+        if (this.hp > 60 && this.hp < 80) {
+            this.attributesRectangleHP.setStrokeStyle(2, 0xfcef5b);
+        }
+
+        if (this.hp > 40 && this.hp < 60) {
+            this.attributesRectangleHP.setStrokeStyle(2, 0xfcc45b);
+        }
+
+        if (this.hp > 20 && this.hp < 40) {
+            this.attributesRectangleHP.setStrokeStyle(2, 0xff4a26);
+        }
+
+        if (this.hp >= 0 && this.hp < 20) {
+            this.attributesRectangleHP.setStrokeStyle(2, 0x4f1004);
+        }
+    }
+
+    private playerFacingMouse(): void {
         this.scene.input.on('pointermove', this.playerRotation,this)
     }
     
@@ -66,6 +111,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         if (this.keys.w.isDown) {
             this.setVelocityY(-this.movementSpeed);
             this.setAngle(this.angle);
+            
         } else if (this.keys.s.isDown) {
             this.setVelocityY(this.movementSpeed);
             this.setAngle(this.angle);
@@ -82,6 +128,16 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.play("walkRifle", true);
         } else {
             this.play("idleRifle", true);
+        }
+
+        if (this.keys.space.isDown) {
+            this.hp--;
+            this.hpText.setText(`HP: ${this.hp.toString()}`);
+        }
+
+        if (this.keys.shift.isDown) {
+            this.hp++;
+            this.hpText.setText(`HP: ${this.hp.toString()}`);
         }
     }
 }
