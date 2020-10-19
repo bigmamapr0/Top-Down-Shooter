@@ -24,6 +24,8 @@ class MainMenu extends Phaser.Scene {
             this.scene.start("level");
         });
         this.add.existing(this.level2);
+
+        this.scene.start("gameplay");
     }
 }
 

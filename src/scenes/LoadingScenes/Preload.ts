@@ -12,7 +12,7 @@ class Preload extends Phaser.Scene {
 
         this.load.atlas("enemies", "./assets/images/enemies.png", "./assets/images/enemies.json");
         this.load.atlas("helicopterMove", "./assets/images/helicopterMove.png", "./assets/images/helicopterMove.json");
-
+        
         this.load.start();
     }
 

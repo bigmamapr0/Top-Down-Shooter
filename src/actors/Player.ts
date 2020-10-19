@@ -10,6 +10,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     
     keys: CharacterInput;
 
+    angle: any;
+
     constructor(scene: Phaser.Scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
 
@@ -37,6 +39,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             repeat: -1
         });
         
+        this.setOrigin(0.5);
+
         this.keys = new CharacterInput(this.scene);
 
         this.play("idleRifle");
@@ -44,55 +48,40 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     public update(): void {
         this.playerMovement();
+        this.playerFacingMouse();
     }
 
+    public playerFacingMouse(): void {
+        this.scene.input.on('pointermove', this.playerRotation,this)
+    }
+    
+    private playerRotation(pointer): void {
+        this.angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, pointer.x, pointer.y);
+        this.setAngle(this.angle);
+    }
+    
     public playerMovement(): void {
         this.setVelocity(0, 0);
-
+        
         if (this.keys.w.isDown) {
             this.setVelocityY(-this.movementSpeed);
-            this.rotation = -3.14/2;
+            this.setAngle(this.angle);
         } else if (this.keys.s.isDown) {
             this.setVelocityY(this.movementSpeed);
-            this.rotation = 3.14/2;
+            this.setAngle(this.angle);
         }
 
         if (this.keys.a.isDown) {
             this.setVelocityX(-this.movementSpeed);
-            this.rotation = +-3.14;
+            this.setAngle(this.angle);
         } else if (this.keys.d.isDown) {
             this.setVelocityX(this.movementSpeed);
-            this.rotation = 0;
+            this.setAngle(this.angle);
         }
-
         if (this.keys.w.isDown || this.keys.s.isDown || this.keys.a.isDown || this.keys.d.isDown) {
             this.play("walkRifle", true);
         } else {
             this.play("idleRifle", true);
-        }
-
-        // Side Ways Animation
-        if (this.keys.w.isDown && this.keys.d.isDown) {
-            this.rotation = (-3.14/2) / 2;
-        }
-
-        if (this.keys.w.isDown && this.keys.a.isDown) {
-            this.rotation = 180
-        }
-        
-        if (this.keys.s.isDown && this.keys.d.isDown) {
-            this.rotation = (3.14/2) / 2;
-        }
-        
-        if (this.keys.s.isDown && this.keys.a.isDown) {
-            this.rotation = 90
-        }
-
-        // Sprinting
-        if (this.keys.shift.isDown) {
-            this.movementSpeed = this.sprintSpeedAdded;
-        } else if (this.keys.shift.isUp) {
-            this.movementSpeed = this.baseSpeed;
         }
     }
 }
