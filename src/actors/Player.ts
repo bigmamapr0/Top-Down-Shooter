@@ -48,15 +48,28 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setVelocity(0, 0);
 
         if (this.keys.w.isDown) {
-            this.setVelocityY(-this.movementSpeed);
+            if (this.angle > 0){
+                this.setVelocityY(this.rotation * 100);
+            } else if (this.angle < 0) {
+                this.setVelocityY(this.rotation * 100);
+            }
+
+            if(this.angle > -90 && this.angle < 90) {
+                this.setVelocityX(this.movementSpeed);
+            } else {
+                this.setVelocityX(-this.movementSpeed);
+            }
+            // this.setVelocityX(this.angle+this.rotation);
+            // this.setVelocityY(this.angle+this.rotation);
+            console.log("angle is: "+this.angle+" rotation is: "+this.rotation)
         } else if (this.keys.s.isDown) {
-            this.setVelocityY(this.movementSpeed);
+            this.setVelocityY(this.angle);
         }
 
         if (this.keys.a.isDown) {
-            this.setVelocityX(-this.movementSpeed);
+            this.angle += -1;
         } else if (this.keys.d.isDown) {
-            this.setVelocityX(this.movementSpeed);
+            this.angle += 1;
         }
 
         if (this.keys.shift.isDown) {
