@@ -80,7 +80,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
         if (this.hp > 60 && this.hp < 80) {
-            this.attributesRectangleHP.setStrokeStyle(2, 0xfcef5b);
+            this.attributesRectangleHP.setStrokeStyle(2, 0xffff6e);
         }
 
         if (this.hp > 40 && this.hp < 60) {
@@ -92,7 +92,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
         if (this.hp >= 0 && this.hp < 20) {
-            this.attributesRectangleHP.setStrokeStyle(2, 0x4f1004);
+            this.attributesRectangleHP.setStrokeStyle(2, 0x8f0101);
         }
     }
 
@@ -124,20 +124,17 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityX(this.movementSpeed);
             this.setAngle(this.angle);
         }
+        
         if (this.keys.w.isDown || this.keys.s.isDown || this.keys.a.isDown || this.keys.d.isDown) {
             this.play("walkRifle", true);
         } else {
             this.play("idleRifle", true);
         }
 
-        if (this.keys.space.isDown) {
-            this.hp--;
-            this.hpText.setText(`HP: ${this.hp.toString()}`);
-        }
-
-        if (this.keys.shift.isDown) {
-            this.hp++;
-            this.hpText.setText(`HP: ${this.hp.toString()}`);
+        if (this.keys.shift.isDown) {	
+            this.movementSpeed = this.sprintSpeedAdded;	
+        } else if (this.keys.shift.isUp) {	
+            this.movementSpeed = this.baseSpeed;	
         }
     }
 }
