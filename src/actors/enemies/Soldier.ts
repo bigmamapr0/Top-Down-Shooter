@@ -1,27 +1,25 @@
+import { Enemy } from "./Enemy";
 import { Game } from "phaser";
 import { Level } from "../../scenes/Gameplay/Level";
+
 //import { Player } from "../Player";
 
-class Soldier extends Phaser.Physics.Arcade.Sprite {
+class Soldier extends Enemy {
     protected hitPoints: number;
 
-    playerPos: Phaser.Math.Vector2;
-    angle: number;
+    private playerPos: Phaser.Math.Vector2;
+    public angle: number;
 
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number = 1) {
         super(scene, x, y, "enemies", "soldierIdle")
         
         this.hitPoints = hp;
 
-        this.scene.physics.add.existing(this);
-
         this.scene.anims.create({
             key: "soldierDeath",
             frames: this.scene.anims.generateFrameNames("enemies", { prefix: "soldierDeath", start: 1, end: 5 }),
             frameRate: 10,
         });
-
-
     }
 
     public update(): void {
