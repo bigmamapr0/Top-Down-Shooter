@@ -7,6 +7,7 @@ class Preload extends Phaser.Scene {
     preload() {
         this.load.atlas("playerIdleRifle", "./assets/player/TexturePacker/rifle/idle_rifle.png", "./assets/player/TexturePacker/rifle/idle_rifle.json");
         this.load.atlas("playerWalkRifle", "./assets/player/TexturePacker/rifle/walk_rifle.png", "./assets/player/TexturePacker/rifle/walk_rifle.json");
+        this.load.image("bullet", "./assets/objects/bullet.png");
     }
 
     create() {
