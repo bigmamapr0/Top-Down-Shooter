@@ -3,6 +3,7 @@ import { Boot } from './scenes/LoadingScenes/Boot';
 import { Preload } from './scenes/LoadingScenes/Preload';
 import { MainMenu } from './scenes/LoadingScenes/MainMenu';
 import { Gameplay } from './scenes/Gameplay/Gameplay';
+import { Level } from './scenes/Gameplay/Level';
 
 class GameApp extends Phaser.Game {
     public static gameConfig: Phaser.Types.Core.GameConfig = null;
@@ -23,7 +24,7 @@ class GameApp extends Phaser.Game {
                         debug: true
                     }
                 },
-                scene: [Boot, Preload, MainMenu, Gameplay]
+                scene: [Boot, Preload, MainMenu, Gameplay, Level]
             };
         }
 
