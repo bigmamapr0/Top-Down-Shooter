@@ -1,8 +1,12 @@
 import { Bullet } from "./Bullet";
+import { Gameplay } from "../scenes/Gameplay/Gameplay";
 
 class BulletGroup extends Phaser.Physics.Arcade.Group {
 
     bullet: Bullet;
+    bulletArr: Array<any> = [];
+
+    playerPos: any;
     
     constructor(scene: Phaser.Scene) {
         super(scene.physics.world, scene);
@@ -10,19 +14,32 @@ class BulletGroup extends Phaser.Physics.Arcade.Group {
         this.createMultiple({
             classType: Bullet,
             frameQuantity: 30,
-            active: true,
-            visible: true,
+            active: false,
+            visible: false,
             key: "bullet"
-        })
+        });
     }
 
     fireBullet(x: number, y: number) {
         this.bullet = this.getFirstDead();
     
-        if (true) {
-            console.log(123);
-            this.bullet.fire(50, 50);
+        if (this.bullet) {
+            this.playerPos = (<Gameplay>this.scene.scene.get("gameplay")).playerPosition;
+
+            this.bullet.setScale(0.05);
+            this.bullet.setRotation( Phaser.Math.Angle.Between(this.playerPos.x, this.playerPos.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y) + 1.5708)
+            
+            this.bullet.fire(this.playerPos.x, this.playerPos.y - 20);
+            
+            this.bulletArr.push(this.bullet);
+            console.log(this.bulletArr);
         }
+
+        setInterval(() => {
+            if (this.bulletArr.length > 1) {
+                this.bulletArr.shift();
+            }
+        }, 2000)
     }
 }
 

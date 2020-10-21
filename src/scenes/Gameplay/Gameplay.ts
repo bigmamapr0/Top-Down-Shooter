@@ -15,6 +15,14 @@ class Gameplay extends Phaser.Scene {
     constructor() {
         super("gameplay");
     }
+
+    public get playerPosition(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.player.x, this.player.y);
+    }
+
+    public get playerRotation(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.player.rotation);
+    }
     
     create() {
         this.keys = new CharacterInput(this);
@@ -32,7 +40,7 @@ class Gameplay extends Phaser.Scene {
     shooting() {
         this.keys.space.on('down', () => {
             this.shootBullets();
-            console.log(123);
+            console.log(321);
         })
     }
 

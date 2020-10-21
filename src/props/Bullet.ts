@@ -10,7 +10,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.setActive(true);
         this.setVisible(true);
 
-        this.setVelocityX(500);
+        // this.setVelocity(750);
+        this.scene.physics.moveTo(this, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y, 150);
     }
 }
 
