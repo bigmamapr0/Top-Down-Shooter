@@ -2,6 +2,7 @@ import { Player } from "../../actors/Player";
 import { CharacterInput } from "../../util/CharacterInput";
 import { BulletGroup } from "../../props/BulletGroup";
 import { Bullet } from "../../props/Bullet";
+import { Soldier } from "../../actors/enemies/Soldier";
 
 class Gameplay extends Phaser.Scene {
 
@@ -12,16 +13,14 @@ class Gameplay extends Phaser.Scene {
     bullet: Bullet;
     bulletGroup: BulletGroup;
 
+    solider: Soldier;
+
     constructor() {
         super("gameplay");
     }
 
     public get playerPosition(): Phaser.Math.Vector2 {
         return new Phaser.Math.Vector2(this.player.x, this.player.y);
-    }
-
-    public get playerRotation(): Phaser.Math.Vector2 {
-        return new Phaser.Math.Vector2(this.player.rotation);
     }
     
     create() {
@@ -35,6 +34,9 @@ class Gameplay extends Phaser.Scene {
         this.player.setCollideWorldBounds(true);
 
         this.shooting();
+
+        this.solider = new Soldier(this, 500, 300, 100);
+        this.add.existing(this.solider);
     }
 
     shooting() {
