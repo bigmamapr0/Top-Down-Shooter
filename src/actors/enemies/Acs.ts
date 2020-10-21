@@ -1,18 +1,25 @@
 import { Enemy } from "./Enemy";
 import { Sounds } from "./Sounds";
-
+import { Level } from "../../scenes/Gameplay/Level";
 
 class Acs extends Enemy {
     protected hitPoints: number;
-        private achievementSoundP1: Sounds;
-        private achievementSoundConfig: {};
-        private sound: Sounds;
+    
+    private playerPos: Phaser.Math.Vector2;
+    public angle: number;
+    
+    private sound: Sounds;
 
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number = 3) {
-        super(scene, x, y, "enemies", "acsComplete")
-        
+        super(scene, x, y, "enemies", "acsTower")
+
         this.hitPoints = hp;
         this.sound = new Sounds(scene);
+
+        let acsBase: Phaser.GameObjects.Sprite;
+        acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBase");
+        
+        this.scene.add.existing(acsBase);
 
         this.scene.anims.create({
             key: "acsDestroy",
@@ -20,6 +27,21 @@ class Acs extends Enemy {
             frameRate: 2,
             hideOnComplete: true
         });
+
+        this.setOrigin(0.5, 0.4)
+    }
+
+    public update(): void {
+
+        this.acsTowerRotation();
+    }
+
+    private acsTowerRotation(): void {
+
+        this.playerPos = (<Level>this.scene.scene.get("level")).playerPosition;
+        
+        this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.playerPos.x, this.playerPos.y);
+        this.setRotation(this.angle-1.5708);
     }
 
     public get isAlive(): boolean {

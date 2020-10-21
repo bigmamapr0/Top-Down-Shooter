@@ -61,7 +61,7 @@ class Level extends Phaser.Scene {
 
     private soldier_die() {
         //this.soldier.anims.play("soldierDeath");
-        this.acs.destroy();
+        //this.acs.destroy();
     }
 
     update() {
@@ -69,6 +69,7 @@ class Level extends Phaser.Scene {
         this.soldier.update();
         this.soldier2.update();
         this.soldier3.update();
+        this.acs.update();
     }
 }
 
