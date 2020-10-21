@@ -1,8 +1,5 @@
 import { Enemy } from "./Enemy";
-import { Game } from "phaser";
 import { Level } from "../../scenes/Gameplay/Level";
-
-//import { Player } from "../Player";
 
 class Soldier extends Enemy {
     protected hitPoints: number;
@@ -27,12 +24,12 @@ class Soldier extends Enemy {
         this.soldierRotation();
     }
 
-    private soldierRotation() {
+    private soldierRotation(): void {
 
         this.playerPos = (<Level>this.scene.scene.get("level")).playerPosition;
         
         this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.playerPos.x, this.playerPos.y);
-        this.setRotation(this.angle);
+        this.setRotation(this.angle-1.5708);
     }
 
     public get isAlive(): boolean {

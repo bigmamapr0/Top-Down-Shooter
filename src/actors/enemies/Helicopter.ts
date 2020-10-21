@@ -29,6 +29,4 @@ class Helicopter extends Enemy {
     }
 }
 
-
-
 export { Helicopter }

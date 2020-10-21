@@ -1,8 +1,8 @@
 import { CharacterInput } from "../../util/CharacterInput";
 import { Soldier } from "../../actors/enemies/Soldier";
 import { Helicopter } from "../../actors/enemies/Helicopter";
+import { Acs } from "../../actors/enemies/Acs";
 import { Player } from "../../actors/Player";
-
 
 class Level extends Phaser.Scene {
 
@@ -15,6 +15,8 @@ class Level extends Phaser.Scene {
     private soldier: Soldier;
     private soldier2: Soldier;
     private soldier3: Soldier;
+
+    private acs: Acs;
 
     constructor() {
         super("level");
@@ -38,6 +40,8 @@ class Level extends Phaser.Scene {
         this.soldier3 = new Soldier(this, 100, 500);
         this.add.existing(this.soldier3);
 
+        this.acs = new Acs(this, 300, 500);
+        this.add.existing(this.acs);
 
         this.helicopter = new Helicopter(this, 300, 100);
         this.helicopter.anims.play("helicopterRotor");
@@ -47,7 +51,6 @@ class Level extends Phaser.Scene {
             delay: 1000,
             callback: this.soldier_die,
             callbackScope: this,
-            loop: true
         });
     }
 
@@ -58,6 +61,7 @@ class Level extends Phaser.Scene {
 
     private soldier_die() {
         //this.soldier.anims.play("soldierDeath");
+        this.acs.destroy();
     }
 
     update() {
