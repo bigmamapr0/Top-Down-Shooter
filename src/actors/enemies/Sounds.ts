@@ -20,13 +20,13 @@ class Sounds {
     }
 
     public playerAttackSound(): void {
-        let soldierAttack = this.scene.sound.add("gunshot1", this.soundConfig);
-        soldierAttack.play();
+        let soldierAttack1 = this.scene.sound.add("gunshot1", this.soundConfig);
+        soldierAttack1.play();
     }
 
     public soldierAttackSound(): void {
-        let soldierAttack = this.scene.sound.add("gunshot2", this.soundConfig);
-        soldierAttack.play();
+        let soldierAttack2 = this.scene.sound.add("gunshot2", this.soundConfig);
+        soldierAttack2.play();
     }
 }
 

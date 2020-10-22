@@ -1,11 +1,17 @@
 import { Enemy } from "./Enemy";
+import { Sounds } from "./Sounds";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
+import { SoldierBulletWeapon } from "../../props/enemy/SoldierBulletWeapon";
 
 class Soldier extends Enemy {
     protected hitPoints: number;
 
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
+
+    private readonly shotDelay: number = 2000;
+
+    private sound: Sounds;
 
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number = 1) {
         super(scene, x, y, "enemies", "soldierIdle")
@@ -19,10 +25,25 @@ class Soldier extends Enemy {
         });
 
         this.setSize(30, 30);
+
+        this.setWeapon(new SoldierBulletWeapon(this.scene));
     }
 
     public startAttacking(): void {
+        let maxDelay: number = 700;
+        let minDelay: number = 200;
 
+        if (this.attackTimer == null) {
+            this.attackTimer = this.scene.time.addEvent({
+                delay: this.shotDelay,
+                loop: true,
+                callback: this.fire,
+                callbackScope: this,
+                startAt: Math.random() * (maxDelay - minDelay) + minDelay
+            });
+        }
+
+        this.attackTimer.paused = false;
     }
 
     public update(): void {

@@ -1,4 +1,3 @@
-import { DirectionType } from "../../util/DirectionType";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 
 abstract class EnemyBullet extends Phaser.Physics.Arcade.Sprite {

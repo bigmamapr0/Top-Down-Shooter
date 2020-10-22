@@ -56,6 +56,7 @@ class Gameplay extends Phaser.Scene {
 
         this.shooting();
         this.acs.startAttacking();
+        this.soldier.startAttacking();
     }
 
     public get playerPosition(): Phaser.Math.Vector2 {

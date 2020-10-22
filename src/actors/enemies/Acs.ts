@@ -6,7 +6,7 @@ import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 class Acs extends Enemy {
     protected hitPoints: number;
 
-    private readonly shotDelay: number = 1200;
+    private readonly shotDelay: number = 4000;
 
     
     private playerPos: Phaser.Math.Vector2;

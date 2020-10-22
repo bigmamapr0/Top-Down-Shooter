@@ -1,6 +1,5 @@
 import { Weapon } from "./Weapon";
 import { AcsBullet } from "./bulets/AcsBullet";
-import { DirectionType } from "../../util/DirectionType";
 
 class AcsBulletWeapon extends Weapon {
     constructor(scene: Phaser.Scene) {
