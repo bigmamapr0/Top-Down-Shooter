@@ -23,6 +23,10 @@ class Helicopter extends Enemy {
         //this.setOffset(this.x, -5)
     }
 
+    public startAttacking(): void {
+
+    }
+
     public get isAlive(): boolean {
         return this.hitPoints > 0;
     }

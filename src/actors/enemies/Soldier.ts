@@ -21,6 +21,10 @@ class Soldier extends Enemy {
         this.setSize(30, 30);
     }
 
+    public startAttacking(): void {
+
+    }
+
     public update(): void {
 
         this.soldierRotation();

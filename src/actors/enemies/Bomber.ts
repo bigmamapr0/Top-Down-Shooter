@@ -11,6 +11,10 @@ class Bomber extends Enemy {
         this.setSize(50, 200);
     }
 
+    public startAttacking(): void {
+
+    }
+
     public get isAlive(): boolean {
         return this.hitPoints > 0;
     }

@@ -19,6 +19,11 @@ class Sounds {
         acsExplosion2.play();
     }
 
+    public playerAttackSound(): void {
+        let soldierAttack = this.scene.sound.add("gunshot1", this.soundConfig);
+        soldierAttack.play();
+    }
+
     public soldierAttackSound(): void {
         let soldierAttack = this.scene.sound.add("gunshot2", this.soundConfig);
         soldierAttack.play();

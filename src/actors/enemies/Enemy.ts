@@ -7,6 +7,14 @@ abstract class Enemy extends EnemyActor {
         super(scene, x, y, texture, frame);
     }
 
+    public abstract startAttacking(): void;
+    // public abstract stopAttacking(): void;
+
+
+    public fire(): void {
+        super.shootWeapon(this.x, this.y);
+    }
+
     public destroy(): void {
         super.destroy();
     }

@@ -1,9 +1,13 @@
 import { Enemy } from "./Enemy";
 import { Sounds } from "./Sounds";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
+import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 
 class Acs extends Enemy {
     protected hitPoints: number;
+
+    private readonly shotDelay: number = 1200;
+
     
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
@@ -30,6 +34,25 @@ class Acs extends Enemy {
 
         this.setOrigin(0.5, 0.4);
         this.setSize(90, 90);
+
+        this.setWeapon(new AcsBulletWeapon(this.scene));
+    }
+
+    public startAttacking(): void {
+        let maxDelay: number = 700;
+        let minDelay: number = 200;
+
+        if (this.attackTimer == null) {
+            this.attackTimer = this.scene.time.addEvent({
+                delay: this.shotDelay,
+                loop: true,
+                callback: this.fire,
+                callbackScope: this,
+                startAt: Math.random() * (maxDelay - minDelay) + minDelay
+            });
+        }
+
+        this.attackTimer.paused = false;
     }
 
     public update(): void {

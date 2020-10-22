@@ -55,6 +55,7 @@ class Gameplay extends Phaser.Scene {
         this.add.existing(this.bomber);
 
         this.shooting();
+        this.acs.startAttacking();
     }
 
     public get playerPosition(): Phaser.Math.Vector2 {
@@ -74,6 +75,7 @@ class Gameplay extends Phaser.Scene {
     update() {
         this.player.update();
         this.soldier.update();
+        
         this.acs.update();
     }
 }
