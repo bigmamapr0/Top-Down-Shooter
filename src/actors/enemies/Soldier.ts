@@ -1,5 +1,5 @@
 import { Enemy } from "./Enemy";
-import { Level } from "../../scenes/Gameplay/Level";
+import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 
 class Soldier extends Enemy {
     protected hitPoints: number;
@@ -17,6 +17,8 @@ class Soldier extends Enemy {
             frames: this.scene.anims.generateFrameNames("enemies", { prefix: "soldierDeath", start: 1, end: 5 }),
             frameRate: 10,
         });
+
+        this.setSize(30, 30);
     }
 
     public update(): void {
@@ -26,7 +28,7 @@ class Soldier extends Enemy {
 
     private soldierRotation(): void {
 
-        this.playerPos = (<Level>this.scene.scene.get("level")).playerPosition;
+        this.playerPos = (<Gameplay>this.scene.scene.get("gameplay")).playerPosition;
         
         this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.playerPos.x, this.playerPos.y);
         this.setRotation(this.angle-1.5708);

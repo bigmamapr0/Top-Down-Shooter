@@ -3,6 +3,9 @@ import { CharacterInput } from "../../util/CharacterInput";
 import { BulletGroup } from "../../props/BulletGroup";
 import { Bullet } from "../../props/Bullet";
 import { Soldier } from "../../actors/enemies/Soldier";
+import { Helicopter } from "../../actors/enemies/Helicopter";
+import { Acs } from "../../actors/enemies/Acs";
+import { Bomber } from "../../actors/enemies/Bomber";
 
 class Gameplay extends Phaser.Scene {
 
@@ -13,15 +16,19 @@ class Gameplay extends Phaser.Scene {
     bullet: Bullet;
     bulletGroup: BulletGroup;
 
-    solider: Soldier;
+    private soldier: Soldier;
+    private acs: Acs;
+    private helicopter: Helicopter;
+    private bomber: Bomber;
 
+    
+
+    
     constructor() {
         super("gameplay");
     }
 
-    public get playerPosition(): Phaser.Math.Vector2 {
-        return new Phaser.Math.Vector2(this.player.x, this.player.y);
-    }
+
     
     create() {
         this.keys = new CharacterInput(this);
@@ -33,16 +40,30 @@ class Gameplay extends Phaser.Scene {
 
         this.player.setCollideWorldBounds(true);
 
-        this.shooting();
+        this.soldier = new Soldier(this, 100, 100);
+        this.add.existing(this.soldier);
 
-        this.solider = new Soldier(this, 500, 300, 100);
-        this.add.existing(this.solider);
+        this.acs = new Acs(this, 300, 500);
+        this.add.existing(this.acs);
+
+        this.helicopter = new Helicopter(this, 300, 800);
+        this.helicopter.anims.play("helicopterRotor");
+        this.add.existing(this.helicopter);
+
+        
+        this.bomber = new Bomber(this, 800, 200);
+        this.add.existing(this.bomber);
+
+        this.shooting();
+    }
+
+    public get playerPosition(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.player.x, this.player.y);
     }
 
     shooting() {
         this.keys.space.on('down', () => {
             this.shootBullets();
-            console.log(321);
         })
     }
 
@@ -52,6 +73,8 @@ class Gameplay extends Phaser.Scene {
 
     update() {
         this.player.update();
+        this.soldier.update();
+        this.acs.update();
     }
 }
 

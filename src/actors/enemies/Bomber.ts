@@ -7,6 +7,8 @@ class Bomber extends Enemy {
         super(scene, x, y, "enemies", "bomberComplete")
         
         this.hitPoints = hp;
+
+        this.setSize(50, 200);
     }
 
     public get isAlive(): boolean {

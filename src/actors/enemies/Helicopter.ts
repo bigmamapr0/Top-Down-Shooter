@@ -18,6 +18,9 @@ class Helicopter extends Enemy {
         this.on('animationcomplete', (anim: Phaser.Animations.Animation, frame: Phaser.Animations.AnimationFrame) => {
             this.setFrame("helicopterComplete");
         });
+
+        this.setSize(50, 200);
+        //this.setOffset(this.x, -5)
     }
 
     public get isAlive(): boolean {

@@ -1,6 +1,6 @@
 import { Enemy } from "./Enemy";
 import { Sounds } from "./Sounds";
-import { Level } from "../../scenes/Gameplay/Level";
+import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 
 class Acs extends Enemy {
     protected hitPoints: number;
@@ -28,7 +28,8 @@ class Acs extends Enemy {
             hideOnComplete: true
         });
 
-        this.setOrigin(0.5, 0.4)
+        this.setOrigin(0.5, 0.4);
+        this.setSize(90, 90);
     }
 
     public update(): void {
@@ -38,7 +39,7 @@ class Acs extends Enemy {
 
     private acsTowerRotation(): void {
 
-        this.playerPos = (<Level>this.scene.scene.get("level")).playerPosition;
+        this.playerPos = (<Gameplay>this.scene.scene.get("gameplay")).playerPosition;
         
         this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.playerPos.x, this.playerPos.y);
         this.setRotation(this.angle-1.5708);
