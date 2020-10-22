@@ -1,9 +1,15 @@
 import 'phaser';
 import { Boot } from './scenes/LoadingScenes/Boot';
 import { Preload } from './scenes/LoadingScenes/Preload';
-import { MainMenu } from './scenes/LoadingScenes/MainMenu';
+import { MainMenu } from './scenes/MainMenuScenes/MainMenu';
 import { Gameplay } from './scenes/Gameplay/Gameplay';
-import { Level } from './scenes/Gameplay/Level';
+import { Instructions } from './scenes/MainMenuScenes/Instructions';
+import { Settings } from './scenes/MainMenuScenes/Settings';
+import { Quit } from './scenes/MainMenuScenes/Quit';
+import { Level1 } from './scenes/Gameplay/Level1';
+import { Level2 } from './scenes/Gameplay/Level2';
+import { Level3 } from './scenes/Gameplay/Level3';
+import { Difficulty } from './scenes/MainMenuScenes/Difficulty';
 
 class GameApp extends Phaser.Game {
     public static gameConfig: Phaser.Types.Core.GameConfig = null;
@@ -15,7 +21,7 @@ class GameApp extends Phaser.Game {
             GameApp.gameConfig = {
                 type: Phaser.AUTO,
                 parent: "content",
-                backgroundColor: '#385e78',
+                backgroundColor: '#a3afc9',
                 width: window.innerWidth,
                 height: window.innerHeight,
                 physics: {
@@ -24,7 +30,7 @@ class GameApp extends Phaser.Game {
                         debug: true
                     }
                 },
-                scene: [Boot, Preload, MainMenu, Gameplay, Level]
+                scene: [Boot, Preload, MainMenu, Instructions, Settings, Quit, Gameplay, Difficulty, Level1, Level2, Level3]
             };
         }
 
