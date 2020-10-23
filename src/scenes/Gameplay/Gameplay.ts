@@ -6,6 +6,7 @@ import { Soldier } from "../../actors/enemies/Soldier";
 import { Helicopter } from "../../actors/enemies/Helicopter";
 import { Acs } from "../../actors/enemies/Acs";
 import { Bomber } from "../../actors/enemies/Bomber";
+import { SmallBomber } from "../../actors/enemies/SmallBomber";
 
 class Gameplay extends Phaser.Scene {
 
@@ -20,6 +21,7 @@ class Gameplay extends Phaser.Scene {
     private acs: Acs;
     private helicopter: Helicopter;
     private bomber: Bomber;
+    private smallBomber: SmallBomber;
 
     
 
@@ -53,6 +55,9 @@ class Gameplay extends Phaser.Scene {
         
         this.bomber = new Bomber(this, 800, 200);
         this.add.existing(this.bomber);
+
+        this.smallBomber = new SmallBomber(this, 500, 500, 180);
+        this.add.existing(this.smallBomber);
 
         this.shooting();
         this.acs.startAttacking();
