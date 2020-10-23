@@ -27,6 +27,8 @@ class Soldier extends Enemy {
         this.setSize(30, 30);
 
         this.setWeapon(new SoldierBulletWeapon(this.scene));
+
+        this.startAttacking();
     }
 
     public startAttacking(): void {

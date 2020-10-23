@@ -8,20 +8,19 @@ class Acs extends Enemy {
 
     private readonly shotDelay: number = 4000;
 
-    
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
     
     private sound: Sounds;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, hp: number = 3) {
+    constructor(scene: Phaser.Scene, x: number, y: number, rotation?: number) {
         super(scene, x, y, "enemies", "acsTower")
 
-        this.hitPoints = hp;
         this.sound = new Sounds(scene);
 
         let acsBase: Phaser.GameObjects.Sprite;
         acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBase");
+        acsBase.angle = rotation;
         
         this.scene.add.existing(acsBase);
 
@@ -36,6 +35,7 @@ class Acs extends Enemy {
         this.setSize(90, 90);
 
         this.setWeapon(new AcsBulletWeapon(this.scene));
+        this.startAttacking();
     }
 
     public startAttacking(): void {

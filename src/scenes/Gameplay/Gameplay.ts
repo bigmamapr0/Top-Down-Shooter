@@ -2,11 +2,7 @@ import { Player } from "../../actors/Player";
 import { CharacterInput } from "../../util/CharacterInput";
 import { BulletGroup } from "../../props/BulletGroup";
 import { Bullet } from "../../props/Bullet";
-import { Soldier } from "../../actors/enemies/Soldier";
-import { Helicopter } from "../../actors/enemies/Helicopter";
-import { Acs } from "../../actors/enemies/Acs";
-import { Bomber } from "../../actors/enemies/Bomber";
-import { SmallBomber } from "../../actors/enemies/SmallBomber";
+import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
 
 class Gameplay extends Phaser.Scene {
 
@@ -17,21 +13,16 @@ class Gameplay extends Phaser.Scene {
     bullet: Bullet;
     bulletGroup: BulletGroup;
 
-    private soldier: Soldier;
-    private acs: Acs;
-    private helicopter: Helicopter;
-    private bomber: Bomber;
-    private smallBomber: SmallBomber;
-
-    
-
+    private enemyDistribution: EnemyDistribution;
     
     constructor() {
         super("gameplay");
     }
 
+    public get playerPosition(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.player.x, this.player.y);
+    }
 
-    
     create() {
         this.keys = new CharacterInput(this);
         this.bulletGroup = new BulletGroup(this);
@@ -42,30 +33,9 @@ class Gameplay extends Phaser.Scene {
 
         this.player.setCollideWorldBounds(true);
 
-        this.soldier = new Soldier(this, 100, 100);
-        this.add.existing(this.soldier);
-
-        this.acs = new Acs(this, 300, 500);
-        this.add.existing(this.acs);
-
-        this.helicopter = new Helicopter(this, 300, 800);
-        this.helicopter.anims.play("helicopterRotor");
-        this.add.existing(this.helicopter);
-
-        
-        this.bomber = new Bomber(this, 800, 200);
-        this.add.existing(this.bomber);
-
-        this.smallBomber = new SmallBomber(this, 500, 500, 180);
-        this.add.existing(this.smallBomber);
-
         this.shooting();
-        this.acs.startAttacking();
-        this.soldier.startAttacking();
-    }
 
-    public get playerPosition(): Phaser.Math.Vector2 {
-        return new Phaser.Math.Vector2(this.player.x, this.player.y);
+        this.enemyDistribution = new EnemyDistribution(this);
     }
 
     shooting() {
@@ -80,9 +50,7 @@ class Gameplay extends Phaser.Scene {
 
     update() {
         this.player.update();
-        this.soldier.update();
-        
-        this.acs.update();
+        this.enemyDistribution.update();
     }
 }
 

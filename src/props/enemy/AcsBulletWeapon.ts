@@ -9,6 +9,8 @@ class AcsBulletWeapon extends Weapon {
     }
 
     public shoot(x: number, y: number): void {
+        this.scene.sound.play("acsFire");
+
         let bullet: AcsBullet = this.getFirstDead(true);
         if (bullet) {
             bullet.fire(x, y);

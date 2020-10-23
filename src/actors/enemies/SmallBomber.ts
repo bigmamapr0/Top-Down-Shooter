@@ -4,7 +4,7 @@ class SmallBomber extends Enemy {
     protected hitPoints: number;
     //protected rotationAngle: number;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, rotation: number) {
+    constructor(scene: Phaser.Scene, x: number, y: number, rotation?: number) {
         super(scene, x, y, "enemies", "bomberMini")
         
         //this.rotationAngle = rotation;
