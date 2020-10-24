@@ -4,7 +4,7 @@ import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 
 class Acs extends Enemy {
-    protected hitPoints: number = 3;
+    public hitPoints: number = 3;
 
     private readonly shotDelay: number = 4000;
 

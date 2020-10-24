@@ -3,7 +3,7 @@ import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { SoldierBulletWeapon } from "../../props/enemy/SoldierBulletWeapon";
 
 class Soldier extends Enemy {
-    protected hitPoints: number = 1;
+    public hitPoints: number = 1;
 
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
