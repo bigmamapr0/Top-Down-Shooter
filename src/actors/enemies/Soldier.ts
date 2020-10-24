@@ -44,7 +44,6 @@ class Soldier extends Enemy {
                 startAt: Math.random() * (maxDelay - minDelay) + minDelay
             });
         }
-
         this.attackTimer.paused = false;
     }
 
@@ -54,7 +53,6 @@ class Soldier extends Enemy {
     }
 
     private soldierRotation(): void {
-
         this.playerPos = (<Gameplay>this.scene.scene.get("gameplay")).playerPosition;
         
         this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.playerPos.x, this.playerPos.y);

@@ -8,6 +8,7 @@ import { SmallBomber } from "./SmallBomber";
 class EnemyDistribution {
 
     private scene: Phaser.Scene;
+    private enemiesArr: Enemy[];
 
     private soldier: Soldier;
     private soldier2: Soldier;
@@ -19,11 +20,12 @@ class EnemyDistribution {
     constructor(scene: Phaser.Scene) {
         this.scene = scene;
 
+        this.enemiesArr = [];
+
         this.startEnemy();
     }
-
+    
     public startEnemy(): void {
-
         this.soldier = new Soldier(this.scene, 100, 100);
         this.scene.add.existing(this.soldier);
 

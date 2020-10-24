@@ -10,12 +10,17 @@ abstract class Enemy extends EnemyActor {
     public abstract startAttacking(): void;
     // public abstract stopAttacking(): void;
 
-
     public fire(): void {
         super.shootWeapon(this.x, this.y);
     }
 
     public destroy(): void {
+        if (this.attackTimer != null) {
+            this.attackTimer.remove(false);
+            this.attackTimer.destroy();
+            this.attackTimer = null;
+        }
+        
         super.destroy();
     }
 }
