@@ -1,5 +1,5 @@
 import { Weapon } from "./Weapon";
-import { SoldierBullet } from "./bulets/SoldierBullet";
+import { SoldierBullet } from "./bullets/SoldierBullet";
 
 class SoldierBulletWeapon extends Weapon {
 
