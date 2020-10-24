@@ -1,13 +1,12 @@
 import { Enemy } from "./Enemy";
 
 class SmallBomber extends Enemy {
-    protected hitPoints: number;
-    //protected rotationAngle: number;
+    protected hitPoints: number = 2;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, rotation?: number) {
-        super(scene, x, y, "enemies", "bomberMini")
-        
-        //this.rotationAngle = rotation;
+    constructor(scene: Phaser.Scene, x: number, y: number, hp: number, rotation?: number) {
+        super(scene, x, y, "enemies", "bomberMini");
+
+        this.hitPoints *= hp;
 
         this.setAngle(rotation);
         this.setSize(30, 120);

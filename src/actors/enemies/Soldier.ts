@@ -1,22 +1,19 @@
 import { Enemy } from "./Enemy";
-import { Sounds } from "./Sounds";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { SoldierBulletWeapon } from "../../props/enemy/SoldierBulletWeapon";
 
 class Soldier extends Enemy {
-    protected hitPoints: number;
+    protected hitPoints: number = 1;
 
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
 
     private readonly shotDelay: number = 2000;
 
-    private sound: Sounds;
-
-    constructor(scene: Phaser.Scene, x: number, y: number, hp: number = 1) {
+    constructor(scene: Phaser.Scene, x: number, y: number, hp: number) {
         super(scene, x, y, "enemies", "soldierIdle")
         
-        this.hitPoints = hp;
+        this.hitPoints *= hp;
 
         this.scene.anims.create({
             key: "soldierDeath",
@@ -50,6 +47,10 @@ class Soldier extends Enemy {
     public update(): void {
 
         this.soldierRotation();
+
+        if (this.hitPoints == 0) {
+            this.anims.play("soldierDeath");
+        }
     }
 
     private soldierRotation(): void {

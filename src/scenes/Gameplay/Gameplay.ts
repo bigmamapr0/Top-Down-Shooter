@@ -14,9 +14,7 @@ class Gameplay extends Phaser.Scene {
     bulletGroup: BulletGroup;
 
     private enemyDistribution: EnemyDistribution;
-
-    private map: Phaser.Tilemaps.Tilemap;
-    
+   
     constructor() {
         super("gameplay");
     }
@@ -35,21 +33,10 @@ class Gameplay extends Phaser.Scene {
 
         this.player.setCollideWorldBounds(true);
 
-        // this.map = this.make.tilemap({ key: "map" });
-
-        // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
-        // Phaser's cache (i.e. the name you used in preload)
-        // let tileset: Phaser.Tilemaps.Tileset = this.map.addTilesetImage("tiles", "tiles");
-
-        // Parameters: layer name (or index) from Tiled, tileset, x, y
-        // let backgroudLayer: Phaser.Tilemaps.StaticTilemapLayer = this.map.createStaticLayer("Backgrond", [tileset], 0, 0);
-
         this.shooting();
 
         this.enemyDistribution = new EnemyDistribution(this);
-
     }
-
 
     shooting() {
         this.keys.space.on('down', () => {
@@ -58,21 +45,14 @@ class Gameplay extends Phaser.Scene {
     }
 
     shootBullets() {
+        this.sound.play("gunshot1");
         this.bulletGroup.fireBullet(this.player.x, this.player.y);
     }
 
     update() {
         this.player.update();
         this.enemyDistribution.update();
-
-        this.physics.add.overlap(this.bulletGroup, this.player, this.destroy, null, this);
-    }
-
-    
-    destroy(): void {
-
-        
-    }
+    }    
 }
 
 export { Gameplay };

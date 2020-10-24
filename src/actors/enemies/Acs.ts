@@ -4,7 +4,7 @@ import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 
 class Acs extends Enemy {
-    protected hitPoints: number;
+    protected hitPoints: number = 3;
 
     private readonly shotDelay: number = 4000;
 
@@ -13,9 +13,10 @@ class Acs extends Enemy {
     
     private sound: Sounds;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, rotation?: number) {
+    constructor(scene: Phaser.Scene, x: number, y: number, hp: number, rotation?: number) {
         super(scene, x, y, "enemies", "acsTower")
 
+        this.hitPoints *= hp;
         this.sound = new Sounds(scene);
 
         let acsBase: Phaser.GameObjects.Sprite;
@@ -36,6 +37,7 @@ class Acs extends Enemy {
 
         this.setWeapon(new AcsBulletWeapon(this.scene));
         this.startAttacking();
+        this.update();
     }
 
     public startAttacking(): void {
@@ -56,7 +58,6 @@ class Acs extends Enemy {
     }
 
     public update(): void {
-
         this.acsTowerRotation();
     }
 

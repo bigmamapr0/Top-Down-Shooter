@@ -1,12 +1,12 @@
 import { Enemy } from "./Enemy";
 
 class Helicopter extends Enemy {
-    protected hitPoints: number;
+    protected hitPoints: number = 2;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, hp: number = 1) {
+    constructor(scene: Phaser.Scene, x: number, y: number, hp: number, rotation?: number) {
         super(scene, x, y, "enemies", "helicopterComplete")
         
-        this.hitPoints = hp;
+        this.hitPoints *= hp;
 
         this.scene.anims.create({
             key: "helicopterRotor",
