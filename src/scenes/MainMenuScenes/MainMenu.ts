@@ -16,7 +16,7 @@ class MainMenu extends Phaser.Scene {
         this.quit = this.add.text(window.innerWidth / 2, window.innerHeight / 2 + 90, "QUIT", { fontSize: "42px" }).setOrigin(0.5).setInteractive({ useHandCursor: true });
     
         this.play.on('pointerdown', () => {
-            this.scene.start("gameplay");
+            this.scene.start("difficulty");
         })
 
         this.instructions.on('pointerdown', () => {
