@@ -16,6 +16,10 @@ class SmallBomber extends Enemy {
 
     }
 
+    public stopAttacking(): void {
+
+    }
+
     public get isAlive(): boolean {
         return this.hitPoints > 0;
     }

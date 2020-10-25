@@ -30,6 +30,7 @@ class EnemyDistribution {
     }
     
     public startEnemy(): void {
+
         this.difficulty = (<Difficulty>this.scene.scene.get("difficulty")).hardMode;
 
         if (this.difficulty) {

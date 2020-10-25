@@ -1,5 +1,4 @@
 import { Enemy } from "./Enemy";
-import { Sounds } from "./Sounds";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 
@@ -10,26 +9,18 @@ class Acs extends Enemy {
 
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
+    private acsBase: Phaser.GameObjects.Sprite;
     
-    private sound: Sounds;
-
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number, rotation?: number) {
-        super(scene, x, y, "enemies", "acsTower")
+        super(scene, x, y, "enemies", "acsTower");
 
         this.hitPoints *= hp;
-        this.sound = new Sounds(scene);
-
-        let acsBase: Phaser.GameObjects.Sprite;
-        acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBase");
-        acsBase.angle = rotation;
-        
-        this.scene.add.existing(acsBase);
 
         this.scene.anims.create({
             key: "acsDestroy",
-            frames: this.scene.anims.generateFrameNames("enemies", { prefix: "acsBaseBroken", start: 1, end: 2 }),
-            frameRate: 2,
-            hideOnComplete: true
+            frames: this.scene.anims.generateFrameNames("enemies", { prefix: "acsTowerBroken", start: 1, end: 2 }),
+            frameRate: 1,
+            hideOnComplete: false
         });
 
         this.setOrigin(0.5, 0.4);
@@ -37,7 +28,10 @@ class Acs extends Enemy {
 
         this.setWeapon(new AcsBulletWeapon(this.scene));
         this.startAttacking();
-        this.update();
+
+        this.acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBase").setDepth(-2);
+        this.acsBase.angle = this.rotation;
+        this.scene.add.existing(this.acsBase);
     }
 
     public startAttacking(): void {
@@ -53,16 +47,22 @@ class Acs extends Enemy {
                 startAt: Math.random() * (maxDelay - minDelay) + minDelay
             });
         }
-
         this.attackTimer.paused = false;
     }
 
+    public stopAttacking(): void {
+        if (this.attackTimer != null) {
+            this.attackTimer.paused = true;
+        }
+    }
+
     public update(): void {
-        this.acsTowerRotation();
+        if(this.hitPoints > 0) {
+            this.acsTowerRotation();
+        }
     }
 
     private acsTowerRotation(): void {
-
         this.playerPos = (<Gameplay>this.scene.scene.get("gameplay")).playerPosition;
         
         this.angle = Phaser.Math.Angle.Between(this.x, this.y, this.playerPos.x, this.playerPos.y);
@@ -77,11 +77,21 @@ class Acs extends Enemy {
         return this.hitPoints;
     }
 
-    public destroy(): void {
-        this.sound.acsExplosion1Sound();
+    public destroy(){
+        this.stopAttacking();
+        
+        this.acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBaseBroken1").setDepth(-1);
+        this.acsBase.angle = this.rotation;
+        this.scene.add.existing(this.acsBase);
+
         this.anims.play("acsDestroy");
 
-        //super.destroy();
+        this.scene.time.addEvent({
+            delay: 4000,
+            callback: () => {
+                super.destroy();
+            }
+        });
     }
 }
 

@@ -44,12 +44,15 @@ class Soldier extends Enemy {
         this.attackTimer.paused = false;
     }
 
+    public stopAttacking(): void {
+        if (this.attackTimer != null) {
+            this.attackTimer.paused = true;
+        }
+    }
+
     public update(): void {
-
-        this.soldierRotation();
-
-        if (this.hitPoints == 0) {
-            this.anims.play("soldierDeath");
+        if(this.hitPoints > 0) {
+            this.soldierRotation();
         }
     }
 
@@ -66,6 +69,19 @@ class Soldier extends Enemy {
 
     public get hp(): number {
         return this.hitPoints;
+    }
+
+    public destroy(){
+        this.stopAttacking();
+        
+        this.anims.play("soldierDeath");
+
+        this.scene.time.addEvent({
+            delay: 4000,
+            callback: () => {
+                super.destroy();
+            }
+        });
     }
 }
 
