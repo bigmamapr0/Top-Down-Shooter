@@ -5,9 +5,7 @@ import { Acs } from "./Acs";
 import { Bomber } from "./Bomber";
 import { SmallBomber } from "./SmallBomber";
 import { Difficulty } from "../../scenes/MainMenuScenes/Difficulty";
-
 class EnemyDistribution {
-
     private scene: Phaser.Scene;
     private enemiesArr: Enemy[];
 
@@ -28,9 +26,12 @@ class EnemyDistribution {
         
         this.startEnemy();
     }
+
+    public get allEnemies(): Enemy[] {
+        return this.enemiesArr;
+    }
     
     public startEnemy(): void {
-
         this.difficulty = (<Difficulty>this.scene.scene.get("difficulty")).hardMode;
 
         if (this.difficulty) {
@@ -40,9 +41,11 @@ class EnemyDistribution {
         }
 
         this.soldier = new Soldier(this.scene, 100, 100, this.enemyDifficulty);
+        this.enemiesArr.push(this.soldier);
         this.scene.add.existing(this.soldier);
         
         this.soldier2 = new Soldier(this.scene, 400, 100, this.enemyDifficulty);
+        this.enemiesArr.push(this.soldier2);
         this.scene.add.existing(this.soldier2);
         
         this.acs = new Acs(this.scene, 300, 500, this.enemyDifficulty, 180);
@@ -58,20 +61,26 @@ class EnemyDistribution {
         this.smallBomber = new SmallBomber(this.scene, 500, 500, this.enemyDifficulty, 180);
         this.scene.add.existing(this.smallBomber);
 
-        console.log(
-            "Hard Mode: " + this.difficulty + "\n",
-            "solider hp: " + this.soldier.hitPoints + "\n",
-            "acs hp: " + this.acs.hitPoints + "\n",
-            "helicopter hp: " + this.helicopter.hitPoints + "\n",
-            "bomber hp: " + this.bomber.hitPoints + "\n",
-            "smallBomber hp: " + this.smallBomber.hitPoints + "\n"
-        );
+        // console.log(
+        //     "Hard Mode: " + this.difficulty + "\n",
+        //     "solider hp: " + this.soldier.hitPoints + "\n",
+        //     "acs hp: " + this.acs.hitPoints + "\n",
+        //     "helicopter hp: " + this.helicopter.hitPoints + "\n",
+        //     "bomber hp: " + this.bomber.hitPoints + "\n",
+        //     "smallBomber hp: " + this.smallBomber.hitPoints + "\n"
+        // );
     }
 
     public update(): void {
         this.soldier.update();
         this.soldier2.update();
-        this.acs.update();
+
+        if(this.acs.hitPoints > 0){
+            this.acs.update();
+        }
+        if(this.soldier.hitPoints > 0){
+            this.soldier.update();
+        }
     }
 }
 

@@ -72,6 +72,7 @@ class Soldier extends Enemy {
     }
 
     public destroy(){
+        this.hitPoints = 0;
         this.stopAttacking();
         
         this.anims.play("soldierDeath");

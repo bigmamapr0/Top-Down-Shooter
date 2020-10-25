@@ -5,6 +5,7 @@ abstract class Enemy extends EnemyActor {
 
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string) {
         super(scene, x, y, texture, frame);
+        this.setImmovable();
     }
 
     public abstract startAttacking(): void;

@@ -1,4 +1,5 @@
 import { Player } from "../../actors/Player";
+import { Enemy } from "../../actors/enemies/Enemy";
 import { CharacterInput } from "../../util/CharacterInput";
 import { BulletGroup } from "../../props/BulletGroup";
 import { Bullet } from "../../props/Bullet";
@@ -36,6 +37,21 @@ class Gameplay extends Phaser.Scene {
         this.shooting();
 
         this.enemyDistribution = new EnemyDistribution(this);
+
+        this.initCollisions();
+    }
+
+    private initCollisions(): void {
+        this.physics.add.collider(this.player, this.enemyDistribution.allEnemies, this.onPlayerCollision, null, this);
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.allEnemies, this.onPlayerBulletCollision, null, this)
+    }
+
+    private onPlayerCollision(player: Player, enemy: Enemy): void {
+        enemy.destroy();
+    }
+
+    private onPlayerBulletCollision(enemy: Enemy): void {
+        enemy.destroy();
     }
 
     shooting() {
@@ -52,6 +68,7 @@ class Gameplay extends Phaser.Scene {
     update() {
         this.player.update();
         this.enemyDistribution.update();
+        this.initCollisions();
     }    
 }
 

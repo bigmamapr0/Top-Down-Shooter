@@ -11,8 +11,6 @@ class Bomber extends Enemy {
         this.setSize(50, 200);
 
         this.update();
-
-        //this.scene.add.group([this, bomberDmg]);
     }
 
     public startAttacking(): void {
