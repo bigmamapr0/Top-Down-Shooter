@@ -72,17 +72,20 @@ class Soldier extends Enemy {
     }
 
     public destroy(){
-        this.hitPoints = 0;
-        this.stopAttacking();
-        
-        this.anims.play("soldierDeath");
+        this.hitPoints--;
 
-        this.scene.time.addEvent({
-            delay: 4000,
-            callback: () => {
-                super.destroy();
-            }
-        });
+        if (this.hitPoints <= 0) {
+            this.stopAttacking();
+            
+            this.anims.play("soldierDeath");
+    
+            this.scene.time.addEvent({
+                delay: 4000,
+                callback: () => {
+                    super.destroy();
+                }
+            });
+        }
     }
 }
 

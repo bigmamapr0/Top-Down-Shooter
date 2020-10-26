@@ -1,4 +1,3 @@
-import { Enemy } from "./Enemy";
 import { Soldier } from "./Soldier";
 import { Helicopter } from "./Helicopter";
 import { Acs } from "./Acs";
@@ -61,31 +60,33 @@ class EnemyDistribution {
 
         // WAVE 1
         let spawnWave1 = setInterval(() => {
-            this.wave1();
+            this.spawnBomber(2);
             clearInterval(spawnWave1);
-        }, 1000);
-
-        // WAVE 2
-        let spawnWave2 = setInterval(() => {
-            this.wave2();
-            clearInterval(spawnWave2);
-        }, 3000);
+        }, 150);
 
     }
 
-    private wave1(): void {
-        for (let i=0; i < 5; i++) {
+    private spawnSoliders(spawnEnemyNumber): void {
+        for (let i=0; i < spawnEnemyNumber; i++) {
             let solider = new Soldier(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesSolider.push(solider);
             this.scene.add.existing(solider);
         }
     }
 
-    private wave2(): void {
-        for (let i=0; i < 5; i++) {
+    private spawnAcs(spawnEnemyNumber): void {
+        for (let i=0; i < spawnEnemyNumber; i++) {
             let acs = new Acs(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesACS.push(acs);
             this.scene.add.existing(acs);
+        }
+    }
+
+    private spawnBomber(spawnEnemyNumber): void {
+        for (let i=0; i < spawnEnemyNumber; i++) {
+            let bomber = new Bomber(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            this.enemiesBomber.push(bomber);
+            this.scene.add.existing(bomber);
         }
     }
 
@@ -97,6 +98,12 @@ class EnemyDistribution {
         }
         
         for (let enemy of this.enemiesACS ) {
+            if(enemy.hitPoints > 0) {
+                enemy.update();
+            }
+        }
+
+        for (let enemy of this.enemiesBomber ) {
             if(enemy.hitPoints > 0) {
                 enemy.update();
             }

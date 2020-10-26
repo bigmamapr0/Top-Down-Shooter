@@ -46,6 +46,7 @@ class Gameplay extends Phaser.Scene {
     private initCollisions(): void {
         this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSolider, this.onPlayerBulletCollision, null, this)
         this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesACS, this.onPlayerBulletCollision, null, this)
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesBomber, this.onPlayerBulletCollision, null, this)
     }
 
     private onPlayerBulletCollision(enemy: Enemy): void {

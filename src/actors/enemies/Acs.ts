@@ -78,20 +78,28 @@ class Acs extends Enemy {
     }
 
     public destroy(){
-        this.stopAttacking();
-        
-        // this.acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBaseBroken1").setDepth(-1);
-        // this.acsBase.angle = this.rotation;
-        // this.scene.add.existing(this.acsBase);
+        this.hitPoints--;
 
-        // this.anims.play("acsDestroy");
+        if (this.hitPoints <= 0) {
+            this.stopAttacking();
+            
+            // this.acsBase = new Phaser.GameObjects.Sprite(this.scene, this.x, this.y, "enemies", "acsBaseBroken1").setDepth(-1);
+            // this.acsBase.angle = this.rotation;
+            // this.scene.add.existing(this.acsBase);
+    
+            this.anims.play("acsDestroy");
+    
+            this.scene.time.addEvent({
+                delay: 1000,
+                callback: () => {
+                    // this.acsBase.destroy();
+                    super.destroy();
 
-        this.scene.time.addEvent({
-            delay: 500,
-            callback: () => {
-                super.destroy();
-            }
-        });
+                    super.setVisible(false);
+                    super.setActive(false);
+                }
+            });
+        }
     }
 }
 
