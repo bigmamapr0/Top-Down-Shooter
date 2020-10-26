@@ -3,6 +3,7 @@ import { Boot } from './scenes/LoadingScenes/Boot';
 import { Preload } from './scenes/LoadingScenes/Preload';
 import { MainMenu } from './scenes/MainMenuScenes/MainMenu';
 import { Gameplay } from './scenes/Gameplay/Gameplay';
+import { PauseMenu } from './scenes/Gameplay/PauseMenu';
 import { Instructions } from './scenes/MainMenuScenes/Instructions';
 import { Settings } from './scenes/MainMenuScenes/Settings';
 import { Quit } from './scenes/MainMenuScenes/Quit';
@@ -30,7 +31,7 @@ class GameApp extends Phaser.Game {
                         debug: true
                     }
                 },
-                scene: [Boot, Preload, MainMenu, Instructions, Settings, Quit, Gameplay, Difficulty, Level1, Level2, Level3]
+                scene: [Boot, Preload, MainMenu, Instructions, Settings, Quit, Gameplay, Difficulty, PauseMenu, Level1, Level2, Level3]
             };
         }
 

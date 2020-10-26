@@ -34,6 +34,8 @@ class Gameplay extends Phaser.Scene {
 
         this.player.setCollideWorldBounds(true);
 
+        this.player.emitter.on("escPressed", this.onEscPressed, this);
+
         this.shooting();
 
         this.enemyDistribution = new EnemyDistribution(this);
@@ -52,6 +54,11 @@ class Gameplay extends Phaser.Scene {
 
     private onPlayerBulletCollision(enemy: Enemy): void {
         enemy.destroy();
+    }
+
+    private onEscPressed(): void {
+        this.scene.pause();
+        this.scene.launch("pauseMenu");
     }
 
     shooting() {

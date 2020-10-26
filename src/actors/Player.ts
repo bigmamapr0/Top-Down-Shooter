@@ -19,6 +19,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     attributesRectangleHP: Phaser.GameObjects.Rectangle;
     attributesRectangleMoney: Phaser.GameObjects.Rectangle;
 
+    public emitter: Phaser.Events.EventEmitter;
+
     constructor(scene: Phaser.Scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
 
@@ -52,6 +54,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.play("idleRifle");
         this.playerAttributesSystem();
+
+        this.emitter = new Phaser.Events.EventEmitter();
+
+        this.keys.escape.on("down", this.onEscPress, this);
     }
 
     public update(): void {
@@ -136,6 +142,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         } else if (this.keys.shift.isUp) {	
             this.movementSpeed = this.baseSpeed;	
         }
+    }
+
+    private onEscPress(): void {
+        this.emitter.emit("escPressed");
     }
 }
 

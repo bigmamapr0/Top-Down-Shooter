@@ -1,0 +1,52 @@
+{"frames": [
+
+{
+	"filename": "gui_Back",
+	"frame": {"x":0,"y":0,"w":77,"h":35},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":35},
+	"sourceSize": {"w":77,"h":35}
+},
+{
+	"filename": "gui_Menu",
+	"frame": {"x":77,"y":0,"w":110,"h":35},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":35},
+	"sourceSize": {"w":110,"h":35}
+},
+{
+	"filename": "gui_Pause",
+	"frame": {"x":187,"y":0,"w":50,"h":12},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":12},
+	"sourceSize": {"w":50,"h":12}
+},
+{
+	"filename": "gui_Preset",
+	"frame": {"x":0,"y":35,"w":146,"h":183},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":146,"h":183},
+	"sourceSize": {"w":146,"h":183}
+},
+{
+	"filename": "gui_Settings",
+	"frame": {"x":146,"y":35,"w":110,"h":35},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":35},
+	"sourceSize": {"w":110,"h":35}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "gui.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":218},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b796271f16e09d5c1e47de45da81ad37:3c18e897b3fe3d0f970e9aa5957eafbc:788b34ed4e778d63c84b2c3df4d44949$"
+}
+}
