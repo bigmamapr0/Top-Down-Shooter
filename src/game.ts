@@ -7,9 +7,6 @@ import { PauseMenu } from './scenes/Gameplay/PauseMenu';
 import { Instructions } from './scenes/MainMenuScenes/Instructions';
 import { Settings } from './scenes/MainMenuScenes/Settings';
 import { Quit } from './scenes/MainMenuScenes/Quit';
-import { Level1 } from './scenes/Gameplay/Level1';
-import { Level2 } from './scenes/Gameplay/Level2';
-import { Level3 } from './scenes/Gameplay/Level3';
 import { Difficulty } from './scenes/MainMenuScenes/Difficulty';
 
 class GameApp extends Phaser.Game {
@@ -31,7 +28,7 @@ class GameApp extends Phaser.Game {
                         debug: true
                     }
                 },
-                scene: [Boot, Preload, MainMenu, Instructions, Settings, Quit, Gameplay, Difficulty, PauseMenu, Level1, Level2, Level3]
+                scene: [Boot, Preload, MainMenu, Instructions, Settings, Quit, Gameplay, Difficulty, PauseMenu]
             };
         }
 

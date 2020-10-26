@@ -28,7 +28,7 @@ class Gameplay extends Phaser.Scene {
         this.keys = new CharacterInput(this);
         this.bulletGroup = new BulletGroup(this);
 
-        this.player = new Player(this, 200, 200, "playerIdleRifle", "survivor-idle_rifle_4");
+        this.player = new Player(this, window.innerWidth / 2, window.innerHeight / 2, "playerIdleRifle", "survivor-idle_rifle_4");
         this.add.existing(this.player);
         this.physics.add.existing(this.player);
 
@@ -44,12 +44,8 @@ class Gameplay extends Phaser.Scene {
     }
 
     private initCollisions(): void {
-        this.physics.add.collider(this.player, this.enemyDistribution.allEnemies, this.onPlayerCollision, null, this);
-        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.allEnemies, this.onPlayerBulletCollision, null, this)
-    }
-
-    private onPlayerCollision(player: Player, enemy: Enemy): void {
-        enemy.destroy();
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSolider, this.onPlayerBulletCollision, null, this)
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesACS, this.onPlayerBulletCollision, null, this)
     }
 
     private onPlayerBulletCollision(enemy: Enemy): void {
