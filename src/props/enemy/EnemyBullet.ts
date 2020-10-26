@@ -15,6 +15,8 @@ abstract class EnemyBullet extends Phaser.Physics.Arcade.Sprite {
 
         this.body.reset(startX, startY);
 
+        this.setSize(30, 30);
+        
         this.setActive(true);
         this.setVisible(true);
 
