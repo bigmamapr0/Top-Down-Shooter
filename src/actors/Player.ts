@@ -49,7 +49,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         });
         
         this.setOrigin(0.5);
-        this.setScale(0.2);
+        this.setScale(0.25);
 
         this.keys = new CharacterInput(this.scene);
 

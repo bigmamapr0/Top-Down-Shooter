@@ -4,6 +4,7 @@ import { CharacterInput } from "../../util/CharacterInput";
 import { BulletGroup } from "../../props/BulletGroup";
 import { Bullet } from "../../props/Bullet";
 import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
+import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 
 class Gameplay extends Phaser.Scene {
 
@@ -13,6 +14,8 @@ class Gameplay extends Phaser.Scene {
 
     bullet: Bullet;
     bulletGroup: BulletGroup;
+
+    acsBullet: AcsBulletWeapon;
 
     private enemyDistribution: EnemyDistribution;
    
@@ -32,6 +35,7 @@ class Gameplay extends Phaser.Scene {
         this.add.existing(this.player);
         this.physics.add.existing(this.player);
 
+        this.player.setSize(150, 150);
         this.player.setCollideWorldBounds(true);
 
         this.player.emitter.on("escPressed", this.onEscPressed, this);
@@ -44,9 +48,13 @@ class Gameplay extends Phaser.Scene {
     }
 
     private initCollisions(): void {
-        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSolider, this.onPlayerBulletCollision, null, this)
-        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesACS, this.onPlayerBulletCollision, null, this)
-        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesBomber, this.onPlayerBulletCollision, null, this)
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSolider, this.onPlayerBulletCollision, null, this);
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesACS, this.onPlayerBulletCollision, null, this);
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesBomber, this.onPlayerBulletCollision, null, this);
+    }
+
+    private test(): void {
+        console.log(123);
     }
 
     private onPlayerBulletCollision(enemy: Enemy): void {

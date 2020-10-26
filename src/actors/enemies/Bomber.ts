@@ -15,7 +15,7 @@ class Bomber extends Enemy {
         
         this.hitPoints *= hp;
 
-        this.setSize(50, 200);
+        this.setSize(100, 200);
 
         this.setWeapon(new BomberBulletWeapon(this.scene));
 
