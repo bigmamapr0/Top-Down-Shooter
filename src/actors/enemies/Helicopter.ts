@@ -74,7 +74,9 @@ class Helicopter extends Enemy {
             this.scene.time.addEvent({
                 delay: 50,
                 callback: () => {
-                    super.destroy();
+                    this.setVisible(false);
+                    this.body.enable = false;
+                    this.setActive(false);
                 }
             });
         }

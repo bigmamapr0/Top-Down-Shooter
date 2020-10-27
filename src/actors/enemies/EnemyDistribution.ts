@@ -85,8 +85,8 @@ class EnemyDistribution {
 
         // WAVE 1
         let spawnWave1 = setInterval(() => {
+            this.spawnAcs(3);
             this.spawnSoliders(1);
-            this.spawnAcs(1);
             this.spawnBomber(1);
             this.spawnHelicopter(1);
             this.spawnSmallBomber(1);
@@ -100,6 +100,7 @@ class EnemyDistribution {
             let solider = new Soldier(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesSolider.push(solider);
             this.scene.add.existing(solider);
+            this.scene.physics.add.existing(solider);
         }
     }
 
@@ -108,6 +109,7 @@ class EnemyDistribution {
             let acs = new Acs(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesACS.push(acs);
             this.scene.add.existing(acs);
+            this.scene.physics.add.existing(acs);
         }
     }
 
@@ -116,6 +118,7 @@ class EnemyDistribution {
             let bomber = new Bomber(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesBomber.push(bomber);
             this.scene.add.existing(bomber);
+            this.scene.physics.add.existing(bomber);
         }
     }
 
@@ -124,6 +127,7 @@ class EnemyDistribution {
             let helicopter = new Helicopter(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesHelicopter.push(helicopter);
             this.scene.add.existing(helicopter);
+            this.scene.physics.add.existing(helicopter);
         }
     }
 
@@ -132,6 +136,7 @@ class EnemyDistribution {
             let smallBomber = new SmallBomber(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesSmallBomber.push(smallBomber);
             this.scene.add.existing(smallBomber);
+            this.scene.physics.add.existing(smallBomber);
         }
     }
 

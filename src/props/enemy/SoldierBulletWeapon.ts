@@ -3,6 +3,8 @@ import { SoldierBullet } from "./bullets/SoldierBullet";
 
 class SoldierBulletWeapon extends Weapon {
 
+    bullet: SoldierBullet;
+
     constructor(scene: Phaser.Scene) {
         super(scene, SoldierBullet);
 
@@ -12,9 +14,9 @@ class SoldierBulletWeapon extends Weapon {
     public shoot(x: number, y: number): void {
         this.scene.sound.play("gunshot2");
 
-        let bullet: SoldierBullet = this.getFirstDead(true);
-        if (bullet) {
-            bullet.fire(x, y);
+        this.bullet = this.getFirstDead(true);
+        if (this.bullet) {
+            this.bullet.fire(x, y);
         }
     }
 }

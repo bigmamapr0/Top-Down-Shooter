@@ -1,11 +1,12 @@
 import { Enemy } from "./Enemy";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
+import { Game } from "phaser";
 
 class Acs extends Enemy {
     public hitPoints: number = 3;
 
-    private readonly shotDelay: number = 4000;
+    private readonly shotDelay: number = 1000;
 
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
@@ -92,11 +93,9 @@ class Acs extends Enemy {
             this.scene.time.addEvent({
                 delay: 1000,
                 callback: () => {
-                    // this.acsBase.destroy();
-                    super.destroy();
-
-                    super.setVisible(false);
-                    super.setActive(false);
+                    this.setVisible(false);
+                    this.body.enable = false;
+                    this.setActive(false);
                 }
             });
         }

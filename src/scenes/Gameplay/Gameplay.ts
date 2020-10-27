@@ -5,6 +5,8 @@ import { Bullet } from "../../props/Bullet";
 import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
 import { BulletGroup } from "../../props/BulletGroup";
+import { AcsBullet } from "../../props/enemy/bullets/AcsBullet";
+import { EnemyBullet } from "../../props/enemy/EnemyBullet";
 
 class Gameplay extends Phaser.Scene {
 
@@ -14,6 +16,8 @@ class Gameplay extends Phaser.Scene {
 
     bullet: Bullet;
     bulletGroup: BulletGroup;
+
+    bullet1: AcsBullet;
 
     enemyBullets;
 
@@ -62,13 +66,14 @@ class Gameplay extends Phaser.Scene {
         bullet.destroy();
     }
 
-    private onEnemyBulletCollision(): void {
+    private onEnemyBulletCollision(player: Player, bullet): void {
         this.player.hp--;
         this.player.hpText.text = `${this.player.hp}`;
+        
+        bullet.destroy();
 
         if (this.player.hp <= 0) {
             alert("game over");
-            // this.player.destroy();
         }
     }
 
@@ -93,7 +98,7 @@ class Gameplay extends Phaser.Scene {
 
         for (this.enemyBullets of allEnemyWeaponGroups) {
             if (this.enemyBullets) {
-                this.physics.add.collider(this.player, this.enemyBullets, this.onEnemyBulletCollision, null, this);
+                this.physics.add.collider(this.enemyBullets, this.player, this.onEnemyBulletCollision, null, this);
             }
         }
 

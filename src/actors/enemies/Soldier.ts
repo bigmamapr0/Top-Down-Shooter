@@ -83,7 +83,9 @@ class Soldier extends Enemy {
             this.scene.time.addEvent({
                 delay: 4000,
                 callback: () => {
-                    super.destroy();
+                    this.setVisible(false);
+                    this.body.enable = false;
+                    this.setActive(false);
                 }
             });
         }

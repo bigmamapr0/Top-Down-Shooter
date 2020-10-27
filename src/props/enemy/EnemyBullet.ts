@@ -19,6 +19,7 @@ abstract class EnemyBullet extends Phaser.Physics.Arcade.Sprite {
         
         this.setActive(true);
         this.setVisible(true);
+        this.setImmovable(true);
 
         this.playerPos = (<Gameplay>this.scene.scene.get("gameplay")).playerPosition;
         
