@@ -2,10 +2,8 @@ import { Player } from "../../actors/Player";
 import { Enemy } from "../../actors/enemies/Enemy";
 import { CharacterInput } from "../../util/CharacterInput";
 import { Bullet } from "../../props/Bullet";
-import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
 import { BulletGroup } from "../../props/BulletGroup";
-import { AcsBullet } from "../../props/enemy/bullets/AcsBullet";
 
 class Gameplay extends Phaser.Scene {
 
@@ -15,12 +13,10 @@ class Gameplay extends Phaser.Scene {
 
     bullet: Bullet;
     bulletGroup: BulletGroup;
-
-    bullet1: AcsBullet;
-
     enemyBullets;
 
-    acsBullet: AcsBulletWeapon;
+    score: number;
+    scoreText: Phaser.GameObjects.Text;
 
     private enemyDistribution: EnemyDistribution;
    
@@ -51,6 +47,9 @@ class Gameplay extends Phaser.Scene {
         this.enemyDistribution = new EnemyDistribution(this);
 
         this.initCollisions();
+
+        this.score = 0;
+        this.scoreText = this.add.text(this.cameras.main.centerX, 50, `SCORE: ${this.score}`, { fontSize: "50px" }).setOrigin(0.5, 0.5);
     }
 
     private initCollisions(): void {
@@ -69,6 +68,9 @@ class Gameplay extends Phaser.Scene {
         setInterval(() => {
             enemy.setTint(0xffffff);
         }, 150)
+
+        this.score += 10;
+        this.scoreText.text = `SCORE: ${this.score}`;
     }
 
     private onEnemyBulletCollision(player: Player, bullet): void {
