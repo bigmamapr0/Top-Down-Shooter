@@ -90,17 +90,19 @@ class EnemyDistribution {
             this.spawnHelicopter(1);
             this.spawnSmallBomber(1);
             clearInterval(spawnWave1);
-        }, 500);
+        }, 350);
 
-        // WAVE 2
-        let spawnWave2 = setInterval(() => {
+        let infinityWave1 = setInterval(() => {
             this.spawnSoliders(2);
-            this.spawnBomber(2);
-            this.spawnHelicopter(2);
-            this.spawnSmallBomber(2);
-            clearInterval(spawnWave2);
-        }, 3500);
+            this.spawnBomber(1);
+            this.spawnHelicopter(1);
+            this.spawnSmallBomber(1);
+        }, 5000);
 
+        let infinityWave2 = setInterval(() => {
+            this.spawnSmallBomber(2);
+            this.spawnHelicopter(2);
+        }, 12500);
     }
 
     private spawnSoliders(spawnEnemyNumber): void {

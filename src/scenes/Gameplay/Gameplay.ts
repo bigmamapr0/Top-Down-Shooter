@@ -95,8 +95,18 @@ class Gameplay extends Phaser.Scene {
     }
 
     shooting() {
-        this.keys.space.on('down', () => {
+        this.input.on('pointerdown', ()=> {
             this.shootBullets();
+        })
+
+        this.keys.space.on('down', () => {
+            if (this.player.hp <= 80) {
+                this.player.hp += 20;
+                this.player.hpText.text = `HP: ${this.player.hp}`
+            } else {
+                this.player.hp = 100;
+                this.player.hpText.text = `HP: ${this.player.hp}`
+            }
         })
     }
 
