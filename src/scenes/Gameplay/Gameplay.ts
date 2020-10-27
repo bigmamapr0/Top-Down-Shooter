@@ -1,10 +1,10 @@
 import { Player } from "../../actors/Player";
 import { Enemy } from "../../actors/enemies/Enemy";
 import { CharacterInput } from "../../util/CharacterInput";
-import { BulletGroup } from "../../props/BulletGroup";
 import { Bullet } from "../../props/Bullet";
-import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
 import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
+import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
+import { BulletGroup } from "../../props/BulletGroup";
 
 class Gameplay extends Phaser.Scene {
 
@@ -51,14 +51,13 @@ class Gameplay extends Phaser.Scene {
         this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSolider, this.onPlayerBulletCollision, null, this);
         this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesACS, this.onPlayerBulletCollision, null, this);
         this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesBomber, this.onPlayerBulletCollision, null, this);
-    }
-
-    private test(): void {
-        console.log(123);
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesHelicopter, this.onPlayerBulletCollision, null, this);
+        this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSmallBomber, this.onPlayerBulletCollision, null, this);
     }
 
     private onPlayerBulletCollision(enemy: Enemy): void {
         enemy.destroy();
+        this.bullet.destroy();
     }
 
     private onEscPressed(): void {

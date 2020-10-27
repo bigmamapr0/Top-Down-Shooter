@@ -60,7 +60,11 @@ class EnemyDistribution {
 
         // WAVE 1
         let spawnWave1 = setInterval(() => {
-            this.spawnBomber(2);
+            this.spawnSoliders(1);
+            this.spawnAcs(1);
+            this.spawnBomber(1);
+            this.spawnHelicopter(1);
+            this.spawnSmallBomber(1);
             clearInterval(spawnWave1);
         }, 150);
 
@@ -90,6 +94,22 @@ class EnemyDistribution {
         }
     }
 
+    private spawnHelicopter(spawnEnemyNumber): void {
+        for (let i=0; i < spawnEnemyNumber; i++) {
+            let helicopter = new Helicopter(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            this.enemiesHelicopter.push(helicopter);
+            this.scene.add.existing(helicopter);
+        }
+    }
+
+    private spawnSmallBomber(spawnEnemyNumber): void {
+        for (let i=0; i < spawnEnemyNumber; i++) {
+            let smallBomber = new SmallBomber(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            this.enemiesSmallBomber.push(smallBomber);
+            this.scene.add.existing(smallBomber);
+        }
+    }
+
     public update(): void {
         for (let enemy of this.enemiesSolider ) {
             if(enemy.hitPoints > 0) {
@@ -104,6 +124,18 @@ class EnemyDistribution {
         }
 
         for (let enemy of this.enemiesBomber ) {
+            if(enemy.hitPoints > 0) {
+                enemy.update();
+            }
+        }
+
+        for (let enemy of this.enemiesHelicopter ) {
+            if(enemy.hitPoints > 0) {
+                enemy.update();
+            }
+        }
+
+        for (let enemy of this.enemiesSmallBomber ) {
             if(enemy.hitPoints > 0) {
                 enemy.update();
             }
