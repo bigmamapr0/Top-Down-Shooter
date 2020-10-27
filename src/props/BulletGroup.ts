@@ -13,7 +13,7 @@ class BulletGroup extends Phaser.Physics.Arcade.Group {
         
         this.createMultiple({
             classType: Bullet,
-            frameQuantity: 30,
+            frameQuantity: 700,
             active: false,
             visible: false,
             key: "bullet"

@@ -8,7 +8,7 @@ class SmallBomber extends Enemy {
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
 
-    private readonly shotDelay: number = 2000;
+    private readonly shotDelay: number = 1500;
 
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number, rotation?: number) {
         super(scene, x, y, "enemies", "bomberMini");

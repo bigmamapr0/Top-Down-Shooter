@@ -85,19 +85,27 @@ class EnemyDistribution {
 
         // WAVE 1
         let spawnWave1 = setInterval(() => {
-            this.spawnAcs(3);
             this.spawnSoliders(1);
             this.spawnBomber(1);
             this.spawnHelicopter(1);
             this.spawnSmallBomber(1);
             clearInterval(spawnWave1);
-        }, 150);
+        }, 500);
+
+        // WAVE 2
+        let spawnWave2 = setInterval(() => {
+            this.spawnSoliders(2);
+            this.spawnBomber(2);
+            this.spawnHelicopter(2);
+            this.spawnSmallBomber(2);
+            clearInterval(spawnWave2);
+        }, 3500);
 
     }
 
     private spawnSoliders(spawnEnemyNumber): void {
         for (let i=0; i < spawnEnemyNumber; i++) {
-            let solider = new Soldier(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            let solider = new Soldier(this.scene, Phaser.Math.Between(100, (<number>window.innerWidth) - 100), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesSolider.push(solider);
             this.scene.add.existing(solider);
             this.scene.physics.add.existing(solider);
@@ -106,7 +114,7 @@ class EnemyDistribution {
 
     private spawnAcs(spawnEnemyNumber): void {
         for (let i=0; i < spawnEnemyNumber; i++) {
-            let acs = new Acs(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            let acs = new Acs(this.scene, Phaser.Math.Between(100, (<number>window.innerWidth) - 100), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesACS.push(acs);
             this.scene.add.existing(acs);
             this.scene.physics.add.existing(acs);
@@ -115,7 +123,7 @@ class EnemyDistribution {
 
     private spawnBomber(spawnEnemyNumber): void {
         for (let i=0; i < spawnEnemyNumber; i++) {
-            let bomber = new Bomber(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            let bomber = new Bomber(this.scene, Phaser.Math.Between(100, (<number>window.innerWidth) - 100), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesBomber.push(bomber);
             this.scene.add.existing(bomber);
             this.scene.physics.add.existing(bomber);
@@ -124,7 +132,7 @@ class EnemyDistribution {
 
     private spawnHelicopter(spawnEnemyNumber): void {
         for (let i=0; i < spawnEnemyNumber; i++) {
-            let helicopter = new Helicopter(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            let helicopter = new Helicopter(this.scene, Phaser.Math.Between(100, (<number>window.innerWidth) - 100), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesHelicopter.push(helicopter);
             this.scene.add.existing(helicopter);
             this.scene.physics.add.existing(helicopter);
@@ -133,7 +141,7 @@ class EnemyDistribution {
 
     private spawnSmallBomber(spawnEnemyNumber): void {
         for (let i=0; i < spawnEnemyNumber; i++) {
-            let smallBomber = new SmallBomber(this.scene, Phaser.Math.Between(50, (<number>window.innerWidth) - 50), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
+            let smallBomber = new SmallBomber(this.scene, Phaser.Math.Between(100, (<number>window.innerWidth) - 100), Phaser.Math.Between(50, (<number>window.innerHeight) - 50), this.enemyDifficulty);
             this.enemiesSmallBomber.push(smallBomber);
             this.scene.add.existing(smallBomber);
             this.scene.physics.add.existing(smallBomber);

@@ -9,7 +9,7 @@ class Soldier extends Enemy {
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
 
-    private readonly shotDelay: number = 2000;
+    private readonly shotDelay: number = 650;
 
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number) {
         super(scene, x, y, "enemies", "soldierIdle")
@@ -81,7 +81,7 @@ class Soldier extends Enemy {
             this.anims.play("soldierDeath");
     
             this.scene.time.addEvent({
-                delay: 4000,
+                delay: 550,
                 callback: () => {
                     this.setVisible(false);
                     this.body.enable = false;

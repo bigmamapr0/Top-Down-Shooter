@@ -6,7 +6,6 @@ import { AcsBulletWeapon } from "../../props/enemy/AcsBulletWeapon";
 import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
 import { BulletGroup } from "../../props/BulletGroup";
 import { AcsBullet } from "../../props/enemy/bullets/AcsBullet";
-import { EnemyBullet } from "../../props/enemy/EnemyBullet";
 
 class Gameplay extends Phaser.Scene {
 
@@ -41,6 +40,7 @@ class Gameplay extends Phaser.Scene {
         this.add.existing(this.player);
         this.physics.add.existing(this.player);
 
+        this.player.setImmovable(true);
         this.player.setSize(150, 150);
         this.player.setCollideWorldBounds(true);
 
@@ -64,12 +64,22 @@ class Gameplay extends Phaser.Scene {
     private onPlayerBulletCollision(enemy: Enemy, bullet: Bullet): void {
         enemy.destroy();
         bullet.destroy();
+
+        enemy.setTint(0xfc3632);
+        setInterval(() => {
+            enemy.setTint(0xffffff);
+        }, 150)
     }
 
     private onEnemyBulletCollision(player: Player, bullet): void {
         this.player.hp--;
-        this.player.hpText.text = `${this.player.hp}`;
+        this.player.hpText.text = `HP: ${this.player.hp}`;
         
+        player.setTint(0xfc3632);
+        setInterval(() => {
+            player.setTint(0xffffff);
+        }, 400)
+
         bullet.destroy();
 
         if (this.player.hp <= 0) {

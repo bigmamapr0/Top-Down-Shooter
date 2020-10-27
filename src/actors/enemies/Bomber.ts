@@ -8,7 +8,7 @@ class Bomber extends Enemy {
     private playerPos: Phaser.Math.Vector2;
     public angle: number;
 
-    private readonly shotDelay: number = 1000;
+    private readonly shotDelay: number = 2000;
 
     constructor(scene: Phaser.Scene, x: number, y: number, hp: number, rotation?: number) {
         super(scene, x, y, "enemies", "bomberComplete")
@@ -74,7 +74,7 @@ class Bomber extends Enemy {
             this.stopAttacking();
     
             this.scene.time.addEvent({
-                delay: 150,
+                delay: 50,
                 callback: () => {
                     this.setVisible(false);
                     this.body.enable = false;
