@@ -1,7 +1,7 @@
 class Bullet extends Phaser.Physics.Arcade.Sprite {
 
     constructor(scene, x, y, texture) {
-        super(scene, x, y, "bullet");
+        super(scene, x, y, "playerBullet");
     }
 
     fire(x, y) {
@@ -9,8 +9,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
 
         this.setActive(true);
         this.setVisible(true);
-
-        // this.setVelocity(750);
+        this.setScale(0.05);
+        
         this.scene.physics.moveTo(this, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y, 750);
     }
 }

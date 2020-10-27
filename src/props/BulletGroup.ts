@@ -30,16 +30,7 @@ class BulletGroup extends Phaser.Physics.Arcade.Group {
             this.bullet.setRotation( Phaser.Math.Angle.Between(this.playerPos.x, this.playerPos.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y) + 1.5708)
             
             this.bullet.fire(this.playerPos.x, this.playerPos.y - 20);
-            
-            this.bulletArr.push(this.bullet);
-            console.log(this.bulletArr);
         }
-
-        setInterval(() => {
-            if (this.bulletArr.length > 1) {
-                this.bulletArr.shift();
-            }
-        }, 2000)
     }
 }
 

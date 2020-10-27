@@ -15,6 +15,8 @@ class Gameplay extends Phaser.Scene {
     bullet: Bullet;
     bulletGroup: BulletGroup;
 
+    enemyBullets;
+
     acsBullet: AcsBulletWeapon;
 
     private enemyDistribution: EnemyDistribution;
@@ -55,8 +57,9 @@ class Gameplay extends Phaser.Scene {
         this.physics.add.collider(this.bulletGroup, this.enemyDistribution.getEnemiesSmallBomber, this.onPlayerBulletCollision, null, this);
     }
 
-    private onPlayerBulletCollision(enemy: Enemy): void {
+    private onPlayerBulletCollision(enemy: Enemy, bullet: Bullet): void {
         enemy.destroy();
+        bullet.destroy();
     }
 
     private onEnemyBulletCollision(): void {
@@ -65,7 +68,7 @@ class Gameplay extends Phaser.Scene {
 
         if (this.player.hp <= 0) {
             alert("game over");
-            this.player.destroy();
+            // this.player.destroy();
         }
     }
 
@@ -88,9 +91,9 @@ class Gameplay extends Phaser.Scene {
     update() {
         let allEnemyWeaponGroups: Phaser.Physics.Arcade.Group[] = this.enemyDistribution.allEnemyWeapons
 
-        for (let enemyBullets of allEnemyWeaponGroups) {
-            if (enemyBullets) {
-                this.physics.collide(enemyBullets, this.player, this.onEnemyBulletCollision, null, this);
+        for (this.enemyBullets of allEnemyWeaponGroups) {
+            if (this.enemyBullets) {
+                this.physics.add.collider(this.player, this.enemyBullets, this.onEnemyBulletCollision, null, this);
             }
         }
 
