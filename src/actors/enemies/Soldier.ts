@@ -1,6 +1,7 @@
 import { Enemy } from "./Enemy";
 import { Gameplay } from "../../scenes/Gameplay/Gameplay";
 import { SoldierBulletWeapon } from "../../props/enemy/SoldierBulletWeapon";
+import { Player } from "../Player";
 
 class Soldier extends Enemy {
     public hitPoints: number = 1;

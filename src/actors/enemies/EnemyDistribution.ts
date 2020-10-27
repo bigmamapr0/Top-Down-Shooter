@@ -48,6 +48,31 @@ class EnemyDistribution {
     public get getEnemiesSmallBomber(): SmallBomber[] {
         return this.enemiesSmallBomber;
     }
+
+    public get allEnemyWeapons(): Phaser.Physics.Arcade.Group[] {
+        let result: Phaser.Physics.Arcade.Group[] = [];
+        for (let e of this.enemiesSolider) {
+            result.push(e.getWeapon())
+        }
+
+        for (let e of this.enemiesACS) {
+            result.push(e.getWeapon())
+        }
+
+        for (let e of this.enemiesHelicopter) {
+            result.push(e.getWeapon())
+        }
+
+        for (let e of this.enemiesBomber) {
+            result.push(e.getWeapon())
+        }
+
+        for (let e of this.enemiesSmallBomber) {
+            result.push(e.getWeapon())
+        }
+
+        return result;
+    }
     
     public startEnemy(): void {
         this.difficulty = (<Difficulty>this.scene.scene.get("difficulty")).hardMode;

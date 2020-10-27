@@ -57,7 +57,16 @@ class Gameplay extends Phaser.Scene {
 
     private onPlayerBulletCollision(enemy: Enemy): void {
         enemy.destroy();
-        this.bullet.destroy();
+    }
+
+    private onEnemyBulletCollision(): void {
+        this.player.hp--;
+        this.player.hpText.text = `${this.player.hp}`;
+
+        if (this.player.hp <= 0) {
+            alert("game over");
+            this.player.destroy();
+        }
     }
 
     private onEscPressed(): void {
@@ -77,6 +86,14 @@ class Gameplay extends Phaser.Scene {
     }
 
     update() {
+        let allEnemyWeaponGroups: Phaser.Physics.Arcade.Group[] = this.enemyDistribution.allEnemyWeapons
+
+        for (let enemyBullets of allEnemyWeaponGroups) {
+            if (enemyBullets) {
+                this.physics.collide(enemyBullets, this.player, this.onEnemyBulletCollision, null, this);
+            }
+        }
+
         this.player.update();
         this.enemyDistribution.update();
         this.initCollisions();
