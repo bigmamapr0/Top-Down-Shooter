@@ -1,7 +1,9 @@
 class MainMenu extends Phaser.Scene {
 
+    private title: Phaser.GameObjects.Text;
+
     private play: Phaser.GameObjects.Text;
-    settings: Phaser.GameObjects.Text;
+    private settings: Phaser.GameObjects.Text;
     private instructions: Phaser.GameObjects.Text;
     private quit: Phaser.GameObjects.Text;
 
@@ -11,6 +13,8 @@ class MainMenu extends Phaser.Scene {
 
     create() {
         this.cameras.main.setBackgroundColor("#a3afc9");
+
+        this.title = this.add.text(window.innerWidth / 2, 125, " ENDLESS SURVIVAL", { fontSize: "105px" }).setOrigin(0.5);
 
         this.play = this.add.text(window.innerWidth / 2, window.innerHeight / 2 - 90, "PLAY", { fontSize: "42px" }).setOrigin(0.5).setInteractive({ useHandCursor: true });
         this.play.on('pointerdown', () => {
