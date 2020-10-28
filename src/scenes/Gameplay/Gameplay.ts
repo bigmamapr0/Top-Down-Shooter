@@ -4,6 +4,7 @@ import { CharacterInput } from "../../util/CharacterInput";
 import { Bullet } from "../../props/Bullet";
 import { EnemyDistribution } from "../../actors/enemies/EnemyDistribution";
 import { BulletGroup } from "../../props/BulletGroup";
+import { Difficulty } from "../MainMenuScenes/Difficulty";
 
 class Gameplay extends Phaser.Scene {
 
@@ -19,6 +20,7 @@ class Gameplay extends Phaser.Scene {
     scoreText: Phaser.GameObjects.Text;
 
     private enemyDistribution: EnemyDistribution;
+    difficulty: boolean;
    
     constructor() {
         super("gameplay");
@@ -50,6 +52,8 @@ class Gameplay extends Phaser.Scene {
 
         this.score = 0;
         this.scoreText = this.add.text(this.cameras.main.centerX, 50, `SCORE: ${this.score}`, { fontSize: "50px" }).setOrigin(0.5, 0.5);
+
+        this.difficulty = (<Difficulty>this.scene.get("difficulty")).hardMode;
     }
 
     private initCollisions(): void {
@@ -69,8 +73,13 @@ class Gameplay extends Phaser.Scene {
             enemy.setTint(0xffffff);
         }, 150)
 
-        this.score += 10;
-        this.scoreText.text = `SCORE: ${this.score}`;
+        if (this.difficulty) {
+            this.score += 20;
+            this.scoreText.text = `SCORE: ${this.score}`;
+        } else {
+            this.score += 10;
+            this.scoreText.text = `SCORE: ${this.score}`;
+        }
     }
 
     private onEnemyBulletCollision(player: Player, bullet): void {
@@ -86,6 +95,7 @@ class Gameplay extends Phaser.Scene {
 
         if (this.player.hp <= 0) {
             alert("game over");
+            player.destroy();
         }
     }
 

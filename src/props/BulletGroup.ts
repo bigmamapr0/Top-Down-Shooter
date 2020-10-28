@@ -16,7 +16,9 @@ class BulletGroup extends Phaser.Physics.Arcade.Group {
             frameQuantity: 700,
             active: false,
             visible: false,
-            key: "bullet"
+            key: "bullet",
+            "setXY.x": -250,
+            "setXY.y": -250
         });
     }
 

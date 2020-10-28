@@ -25,7 +25,7 @@ class GameApp extends Phaser.Game {
                 physics: {
                     default: "arcade",
                     arcade: {
-                        debug: false
+                        debug: true
                     }
                 },
                 scene: [Boot, Preload, MainMenu, Instructions, Settings, Quit, Gameplay, Difficulty, PauseMenu]

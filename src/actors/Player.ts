@@ -10,12 +10,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     
     baseSpeed: number = 250;
     movementSpeed: number = 250;
-    sprintSpeedAdded: number = 450;
+    sprintSpeedAdded: number = 335;
 
     hp: number = 100;
     hpText: Phaser.GameObjects.Text;
-    money: number = 280;
-    moneyText: Phaser.GameObjects.Text;
     attributesRectangleHP: Phaser.GameObjects.Rectangle;
     attributesRectangleMoney: Phaser.GameObjects.Rectangle;
 
@@ -69,16 +67,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     private playerAttributesSystem(): void {
         this.hpText = this.scene.add.text(20, 20, `HP: ${this.hp}`, { fontSize: "20px", padding: "5px" }).setDepth(10);
-        this.moneyText = this.scene.add.text(145, 20, `MONEY: $${this.money}`, { fontSize: "20px", padding: "5px" }).setDepth(10);
         
         this.hpText.setPadding(10, 10, 10, 10);
-        this.moneyText.setPadding(10, 10, 10, 10);
-
-        this.attributesRectangleHP = this.scene.add.rectangle(this.hpText.x, this.hpText.y, this.hpText.width + 5, this.hpText.height, 0xff0000, 0.2).setOrigin(0, 0).setDepth(9);
-        this.attributesRectangleMoney = this.scene.add.rectangle(this.moneyText.x, this.moneyText.y, this.moneyText.width + 5, this.moneyText.height, 0xb4cfb4, 0.2).setOrigin(0, 0).setDepth(9);
         
+        this.attributesRectangleHP = this.scene.add.rectangle(this.hpText.x, this.hpText.y, this.hpText.width + 5, this.hpText.height, 0xff0000, 0.2).setOrigin(0, 0).setDepth(9);
+    
         this.attributesRectangleHP.setStrokeStyle(2, 0x15ff00);
-        this.attributesRectangleMoney.setStrokeStyle(2, 0xffffff);
     }
 
     private updateHealthSystem() {
