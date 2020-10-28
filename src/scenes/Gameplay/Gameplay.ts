@@ -130,7 +130,7 @@ class Gameplay extends Phaser.Scene {
 
         for (this.enemyBullets of allEnemyWeaponGroups) {
             if (this.enemyBullets) {
-                this.physics.add.collider(this.enemyBullets, this.player, this.onEnemyBulletCollision, null, this);
+                this.physics.collide(this.enemyBullets, this.player, this.onEnemyBulletCollision, null, this);
             }
         }
 

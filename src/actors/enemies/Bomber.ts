@@ -49,6 +49,8 @@ class Bomber extends Enemy {
     public update(): void {
         if(this.hitPoints > 0) {
             this.BomberRotation();
+
+            this.updateWeapon();
         }
     }
 

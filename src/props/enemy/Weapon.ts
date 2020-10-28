@@ -22,7 +22,7 @@ abstract class Weapon extends Phaser.Physics.Arcade.Group {
 
     public update(): void {
         this.children.iterate((bullet: EnemyBullet) => {
-            if (bullet.x < 0 || bullet.x > 1024) {
+            if (bullet.x < 0 || bullet.y > 1024) {
                 this.killAndHide(bullet);
                 bullet.body.reset(0, -100);
             }
